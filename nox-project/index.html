@@ -23,7 +23,7 @@
 
 <!-- Loader -->
 <div class="loader" id="loader">
-  <div class="loader-logo" id="loader-logo">N<span>O</span>X</div>
+  <div class="loader-logo display" id="loader-logo">N<span class="accent-word">O</span>X</div>
   <div class="loader-bar-wrap"><div class="loader-bar" id="loader-bar"></div></div>
   <div class="loader-pct" id="loader-pct">0%</div>
 </div>
@@ -31,47 +31,28 @@
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#home" class="nav-logo"><img src="assets/images/logo-nox.png" alt="NOX Cozinhas Industriais" style="height:32px;width:auto;display:block;"></a>
+    <a href="#home" class="nav-logo"><img src="assets/images/logo-nox.png" alt="NOX Cozinhas Industriais" width="96" height="32"></a>
     <div class="nav-links">
       <a href="#about" class="nav-link">Sobre</a>
       <a href="#setores" class="nav-link">Setores</a>
       <a href="#produtos" class="nav-link">Produtos</a>
       <a href="#inox" class="nav-link">Guia Inox</a>
     </div>
-    <a href="#quote" class="nav-cta">Orçamento</a>
+    <a href="#quote" class="nav-cta btn-primary">Orçamento</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-left">
-    <div class="hero-eyebrow">Alvorada / RS — Desde 2005</div>
-    <h1 class="hero-h1">
-      <span class="h1-line">NOX</span>
-      <span class="h1-line h1-accent">COZINHAS</span>
-      <span class="h1-line">INDUSTRIAIS</span>
-    </h1>
+  <div class="hero-media"><img src="assets/images/banner1.jpg" alt="Cozinha industrial em aço inox fabricada pela NOX" class="hero-img" width="1920" height="1080"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-content container">
+    <div class="hero-eyebrow section-label">Alvorada / RS — Desde 2005</div>
+    <h1 class="hero-h1 display">Cozinhas industriais em <span class="accent-word">aço inox</span> sob medida</h1>
     <p class="hero-desc">Fabricante de móveis e equipamentos sob medida em aço inoxidável para cozinhas industriais, padarias, hospitais e laboratórios. Fabricação e envio para todo o Brasil.</p>
     <div class="hero-actions">
       <a href="#quote" class="btn-primary">Solicitar Orçamento →</a>
       <a href="#produtos" class="btn-ghost">Ver Produtos</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-right-bg"></div>
-    <div class="hero-video-wrap" style="animation: fadeup 0.8s var(--ease) 2.2s both; opacity:0">
-      <!--
-        ═══════════════════════════════════════════
-        VÍDEO 9:16 — substitua este bloco por:
-        <video src="assets/video/hero-video.mp4" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></video>
-        ═══════════════════════════════════════════
-      -->
-      <div class="hero-video-placeholder-icon">▶</div>
-      <div class="hero-video-placeholder-label">
-        Vídeo 9:16<br>
-        <span style="color:var(--accent);font-size:0.55rem;margin-top:0.3rem;display:block">Substitua pelo arquivo .mp4</span>
-      </div>
-      <div class="hero-video-ratio-tag">9 : 16</div>
     </div>
   </div>
 </section>
@@ -89,7 +70,6 @@
     <span class="mi">Norma ANVISA RDC 50</span><span class="mi dot">·</span>
     <span class="mi hi">Projeto CAD 3D</span><span class="mi dot">·</span>
     <span class="mi">Alvorada / RS</span><span class="mi dot">·</span>
-    <!-- duplicata para loop contínuo -->
     <span class="mi hi">Fabricação Sob Medida</span><span class="mi dot">·</span>
     <span class="mi">Aço Inox AISI 304</span><span class="mi dot">·</span>
     <span class="mi hi">Solda TIG Cirúrgica</span><span class="mi dot">·</span>
@@ -105,252 +85,179 @@
 
 <!-- ABOUT -->
 <section class="section" id="about">
-  <div class="about-grid">
-    <div data-reveal="up">
-      <div class="section-label">Sólida Tradição em Aço Inox</div>
-      <h2 class="section-title">20 Anos<br>de Excelência</h2>
+  <div class="container about-grid">
+    <div data-reveal="40">
+      <div class="section-label">Sólida tradição em aço inox</div>
+      <h2 class="section-title">20 anos<br>de <span class="accent-word">excelência</span></h2>
       <div class="about-text">
         <p>Sediada estrategicamente em <strong>Alvorada/RS</strong>, a NOX Cozinhas Industriais consolidou-se como referência na projeção, produção e montagem de móveis e equipamentos sob medida em aço inoxidável para o mercado profissional.</p>
-        <p>Do projeto inicial em CAD 3D até a instalação final, atendemos de forma consultiva <strong>Padarias, Hospitais, Confeitarias, Restaurantes, Mercados, Cozinhas de Condomínios e Laboratórios</strong> em todo o Brasil, com instalação presencial dependendo do projeto.</p>
-        <p>Entregamos soluções com furação precisa, acabamentos impecáveis (escovados Scotch-Brite e polidos), solda cirúrgica TIG e total obediência às diretrizes de assepsia da <strong>ANVISA (RDC 50)</strong>.</p>
+        <p>Do projeto inicial em CAD 3D à instalação final, atendemos padarias, hospitais, confeitarias, restaurantes, mercados e laboratórios em todo o Brasil.</p>
+        <p>Entregamos furação precisa, acabamentos impecáveis (escovados Scotch-Brite e polidos), solda cirúrgica TIG e total obediência às diretrizes de assepsia da <strong>ANVISA (RDC 50)</strong>.</p>
       </div>
-      <div class="about-states">
-        <span class="state-tag">Todo o Brasil</span>
-        <span class="state-tag">Fabricação &amp; Envio Nacional</span>
-        <span class="state-tag">Instalação por Projeto</span>
+      <div class="about-photos">
+        <img src="assets/images/sobre1.jpg" alt="Fabricação em aço inox na NOX" loading="lazy" width="600" height="750" class="about-photo a">
+        <img src="assets/images/sobre2.jpg" alt="Acabamento de equipamento em inox" loading="lazy" width="600" height="450" class="about-photo b">
       </div>
     </div>
-    <div data-reveal="right">
-      <div class="metrics-block">
-        <div class="metric-cell">
-          <div class="metric-n">20<span>+</span></div>
-          <div class="metric-l">Anos de Mercado</div>
-        </div>
-        <div class="metric-cell">
-          <div class="metric-n">100<span>%</span></div>
-          <div class="metric-l">Sob Medida</div>
-        </div>
-        <div class="metric-cell">
-          <div class="metric-n">6<span style="font-size:60%;color:var(--accent)">M</span></div>
-          <div class="metric-l">Garantia de Fábrica</div>
-        </div>
-        <div class="metric-cell">
-          <div class="metric-n" style="font-size:clamp(2rem,3.5vw,3.2rem); letter-spacing:0.04em">TIG</div>
-          <div class="metric-l">Solda Profissional</div>
-        </div>
-        <div class="metric-full">
-          <div class="metric-full-icon">⚙</div>
-          <div>
-            <h4>Assistência Técnica Permanente Própria</h4>
-            <p>Nossa equipe técnica própria atende de Segunda a Sexta das 8h às 18h, prestando suporte vitalício e calibração de maquinários para que seu negócio continue faturando.</p>
-          </div>
-        </div>
-      </div>
+    <div class="metrics-block" data-reveal-group>
+      <div class="metric-cell" data-reveal-item><div class="metric-n"><span data-count="20">0</span><span class="accent-word">+</span></div><div class="metric-l">Anos de mercado</div></div>
+      <div class="metric-cell" data-reveal-item><div class="metric-n"><span data-count="100">0</span><span class="accent-word">%</span></div><div class="metric-l">Sob medida</div></div>
+      <div class="metric-cell" data-reveal-item><div class="metric-n">6<span class="accent-word">M</span></div><div class="metric-l">Garantia de fábrica</div></div>
+      <div class="metric-cell" data-reveal-item><div class="metric-n display">TIG</div><div class="metric-l">Solda profissional</div></div>
     </div>
   </div>
 </section>
 
 <!-- MANIFESTO -->
-<section class="section section--alt">
-  <div class="manifesto" data-reveal="up">
-    <div class="manifesto-vert">Nossa filosofia de fabricação</div>
-    <div>
-      <div class="section-label" style="margin-bottom:2rem">Manifesto NOX</div>
-      <div class="manifesto-text">
-        Aço inox não é<br>
-        apenas o nosso<br>
-        <em>material de trabalho</em> —<br>
-        <span class="light">é nossa matéria</span><br>
-        <em>de valor.</em>
-      </div>
-    </div>
+<section class="manifesto-section" id="manifesto">
+  <img src="assets/images/porque-a-nox.jpg" alt="" aria-hidden="true" class="manifesto-bg" loading="lazy" width="1920" height="900">
+  <div class="container manifesto-inner" data-reveal="40">
+    <div class="section-label">Manifesto NOX</div>
+    <p class="manifesto-text display">Aço inox não é apenas o nosso <span class="accent-word">material de trabalho</span> — é nossa matéria de valor.</p>
   </div>
 </section>
 
 <!-- DIFERENCIAIS -->
-<section class="section" id="diferenciais">
-  <div class="dif-intro">
-    <div data-reveal="up">
-      <div class="section-label">Por que a NOX</div>
-      <h2 class="section-title">Nossos<br>Diferenciais</h2>
+<section class="section section--alt" id="diferenciais">
+  <div class="container">
+    <div class="dif-intro" data-reveal="40">
+      <div>
+        <div class="section-label">Por que a NOX</div>
+        <h2 class="section-title">Nossos <span class="accent-word">diferenciais</span></h2>
+      </div>
+      <p class="dif-lead">Duas décadas de especialização em aço inoxidável nos tornaram referência de qualidade no sul do Brasil. Cada projeto é tratado como único.</p>
     </div>
-    <div data-reveal="right" style="padding-bottom:1rem">
-      <p style="font-size:0.95rem;color:var(--muted);line-height:1.8">Duas décadas de especialização em aço inoxidável nos tornaram a referência de qualidade no sul do Brasil. Cada projeto é tratado como único.</p>
-    </div>
-  </div>
-  <div class="dif-grid">
-    <div class="dif-item" data-reveal="up" style="transition-delay:0ms">
-      <div class="dif-num">01 —</div>
-      <div class="dif-title">20 Anos de Mercado</div>
-      <p class="dif-desc">Duas décadas consolidando o nome NOX como sinônimo de excelência mecânica e durabilidade no sul do país.</p>
-    </div>
-    <div class="dif-item" data-reveal="up" style="transition-delay:80ms">
-      <div class="dif-num">02 —</div>
-      <div class="dif-title">Fabricação Sob Medida</div>
-      <p class="dif-desc">Projeto milimetricamente perfeito. Personalizamos tampos, cubas, espessuras de chapa e layouts para otimização da sua cozinha.</p>
-    </div>
-    <div class="dif-item" data-reveal="up" style="transition-delay:160ms">
-      <div class="dif-num">03 —</div>
-      <div class="dif-title">Aço Inox de Alto Padrão</div>
-      <p class="dif-desc">Ligas genuínas certificadas AISI 304 e AISI 430. Sem ligas baratas de rápida corrosão. Resistência que dura décadas.</p>
-    </div>
-    <div class="dif-item" data-reveal="up" style="transition-delay:0ms">
-      <div class="dif-num">04 —</div>
-      <div class="dif-title">Assistência Permanente</div>
-      <p class="dif-desc">Atendimento prioritário de segunda a sexta, das 8h às 18h. Garantia de que sua produção nunca para.</p>
-    </div>
-    <div class="dif-item" data-reveal="up" style="transition-delay:80ms">
-      <div class="dif-num">05 —</div>
-      <div class="dif-title">Garantia de 6 Meses</div>
-      <p class="dif-desc">Garantia integral contra qualquer imperfeição de fabricação ou soldagem. Processo de soldagem TIG profissional ultra-limpo.</p>
-    </div>
-    <div class="dif-item" data-reveal="up" style="transition-delay:160ms">
-      <div class="dif-num">06 —</div>
-      <div class="dif-title">Doméstico ao Industrial</div>
-      <p class="dif-desc">Seja para um gourmet residencial de condomínio ou uma cozinha fabril de hospitais, entregamos a mesma excelência.</p>
+    <div class="dif-grid" data-reveal-group>
+      <article class="dif-item" data-reveal-item>
+        <svg class="dif-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg>
+        <div class="dif-num">01</div><h3 class="dif-title">20 anos de mercado</h3>
+        <p class="dif-desc">Duas décadas consolidando o nome NOX como sinônimo de excelência mecânica e durabilidade no sul do país.</p>
+      </article>
+      <article class="dif-item" data-reveal-item>
+        <svg class="dif-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16V8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M7 6v3M11 6v5M15 6v3M19 6v5"/></svg>
+        <div class="dif-num">02</div><h3 class="dif-title">Fabricação sob medida</h3>
+        <p class="dif-desc">Projeto milimetricamente perfeito. Personalizamos tampos, cubas, espessuras de chapa e layouts para otimização da sua cozinha.</p>
+      </article>
+      <article class="dif-item" data-reveal-item>
+        <svg class="dif-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8-8 11-4.5-3-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div class="dif-num">03</div><h3 class="dif-title">Aço inox de alto padrão</h3>
+        <p class="dif-desc">Ligas genuínas certificadas AISI 304 e AISI 430. Sem ligas baratas de rápida corrosão. Resistência que dura décadas.</p>
+      </article>
+      <article class="dif-item" data-reveal-item>
+        <svg class="dif-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6 2.7 2.7 6-6a4 4 0 0 0 5.4-5.4l-2.4 2.4-2-2z"/></svg>
+        <div class="dif-num">04</div><h3 class="dif-title">Assistência permanente</h3>
+        <p class="dif-desc">Atendimento prioritário de segunda a sexta, das 8h às 18h. Garantia de que sua produção nunca para.</p>
+      </article>
+      <article class="dif-item" data-reveal-item>
+        <svg class="dif-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>
+        <div class="dif-num">05</div><h3 class="dif-title">Garantia de 6 meses</h3>
+        <p class="dif-desc">Garantia integral contra qualquer imperfeição de fabricação ou soldagem. Processo de soldagem TIG profissional ultra-limpo.</p>
+      </article>
+      <article class="dif-item" data-reveal-item>
+        <svg class="dif-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg>
+        <div class="dif-num">06</div><h3 class="dif-title">Do doméstico ao industrial</h3>
+        <p class="dif-desc">Seja para um gourmet residencial de condomínio ou uma cozinha fabril de hospitais, entregamos a mesma excelência.</p>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- SETORES -->
-<section class="section section--alt" id="setores">
-  <div class="setores-header">
-    <div data-reveal="up">
-      <div class="section-label">Mercados Atendidos</div>
-      <h2 class="section-title">Setores</h2>
+<section class="section" id="setores">
+  <div class="container">
+    <div class="setores-header" data-reveal="40">
+      <div>
+        <div class="section-label">Mercados atendidos</div>
+        <h2 class="section-title"><span class="accent-word">Setores</span></h2>
+      </div>
+      <p class="dif-lead">Soluções específicas para cada segmento, do projeto à instalação.</p>
     </div>
-    <div data-reveal="right" style="padding-bottom:0.5rem">
-      <p style="font-size:0.88rem;color:var(--muted);max-width:300px;line-height:1.7">Soluções específicas para cada segmento, do projeto à instalação.</p>
+    <div class="setores-tabs" id="setores-tabs">
+      <button class="setor-tab active" data-setor="0"><svg class="setor-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8M4 14l6 6M14 4c1 3 3 5 6 6l-2 2c-3-1-5-3-6-6z"/></svg><span class="setor-tab-name">Padarias &amp; Confeitarias</span></button>
+      <button class="setor-tab" data-setor="1"><svg class="setor-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v7a3 3 0 0 0 6 0V2M7 2v20M18 2c-2 0-3 2-3 5s1 5 3 5V2zM18 12v10"/></svg><span class="setor-tab-name">Restaurantes &amp; Bares</span></button>
+      <button class="setor-tab" data-setor="2"><svg class="setor-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12.5a1.5 1.5 0 0 0 1.5 1.2h8a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/></svg><span class="setor-tab-name">Mercados &amp; Supermercados</span></button>
+      <button class="setor-tab" data-setor="3"><svg class="setor-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="setor-tab-name">Hospitais &amp; Laboratórios</span></button>
+      <button class="setor-tab" data-setor="4"><svg class="setor-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 7h.01M13 7h.01M9 11h.01M13 11h.01M9 15h.01M13 15h.01"/></svg><span class="setor-tab-name">Condomínios &amp; Áreas VIP</span></button>
     </div>
+    <div id="setor-panel-container"></div>
   </div>
-  <div class="setores-tabs" id="setores-tabs">
-    <div class="setor-tab active" onclick="selectSetor(0,this)">
-      <div class="setor-tab-icon">🍞</div>
-      <div class="setor-tab-name">Padarias &amp; Confeitarias</div>
-      <div class="setor-tab-tag">Da fermentação ao forno perfeito</div>
-    </div>
-    <div class="setor-tab" onclick="selectSetor(1,this)">
-      <div class="setor-tab-icon">🍽</div>
-      <div class="setor-tab-name">Restaurantes, Bares &amp; Lanchonetes</div>
-      <div class="setor-tab-tag">Performance no ritmo acelerado</div>
-    </div>
-    <div class="setor-tab" onclick="selectSetor(2,this)">
-      <div class="setor-tab-icon">🛒</div>
-      <div class="setor-tab-name">Mercados &amp; Supermercados</div>
-      <div class="setor-tab-tag">Exposição fresca e cortes precisos</div>
-    </div>
-    <div class="setor-tab" onclick="selectSetor(3,this)">
-      <div class="setor-tab-icon">🏥</div>
-      <div class="setor-tab-name">Hospitais, Clínicas &amp; Labs</div>
-      <div class="setor-tab-tag">Biossegurança total e assepsia</div>
-    </div>
-    <div class="setor-tab" onclick="selectSetor(4,this)">
-      <div class="setor-tab-icon">🏢</div>
-      <div class="setor-tab-name">Condomínios &amp; Áreas VIP</div>
-      <div class="setor-tab-tag">Sofisticação que resiste ao tempo</div>
-    </div>
-  </div>
-  <div id="setor-panel-container"></div>
 </section>
 
 <!-- PRODUTOS -->
-<section class="section" id="produtos">
-  <div data-reveal="up" style="margin-bottom:3rem">
-    <div class="section-label">Catálogo Completo</div>
-    <h2 class="section-title">Linha de<br>Produtos</h2>
+<section class="section section--alt" id="produtos">
+  <div class="container">
+    <div class="produtos-head" data-reveal="40">
+      <div class="section-label">Catálogo completo</div>
+      <h2 class="section-title">Linha de <span class="accent-word">produtos</span></h2>
+    </div>
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-btn active" data-cat="all">Todos</button>
+      <button class="filter-btn" data-cat="Cocção">Cocção</button>
+      <button class="filter-btn" data-cat="Refrigeração">Refrigeração</button>
+      <button class="filter-btn" data-cat="Mobiliário">Mobiliário</button>
+      <button class="filter-btn" data-cat="Exaustão">Exaustão</button>
+      <button class="filter-btn" data-cat="Padaria">Padaria</button>
+      <button class="filter-btn" data-cat="Preparação">Preparação</button>
+      <button class="filter-btn" data-cat="Biossegurança">Biossegurança</button>
+      <button class="filter-btn" data-cat="Projetos">Projetos</button>
+      <button class="filter-btn" data-cat="Acessórios">Acessórios</button>
+    </div>
+    <div class="prod-grid" id="prod-grid"></div>
+    <div id="prod-detail"></div>
   </div>
-  <div class="filter-bar" id="filter-bar">
-    <button class="filter-btn active" onclick="filterProd('all',this)">Todos</button>
-    <button class="filter-btn" onclick="filterProd('Cocção',this)">Cocção</button>
-    <button class="filter-btn" onclick="filterProd('Refrigeração',this)">Refrigeração</button>
-    <button class="filter-btn" onclick="filterProd('Mobiliário',this)">Mobiliário</button>
-    <button class="filter-btn" onclick="filterProd('Exaustão',this)">Exaustão</button>
-    <button class="filter-btn" onclick="filterProd('Padaria',this)">Padaria</button>
-    <button class="filter-btn" onclick="filterProd('Preparação',this)">Preparação</button>
-    <button class="filter-btn" onclick="filterProd('Biossegurança',this)">Biossegurança</button>
-    <button class="filter-btn" onclick="filterProd('Projetos',this)">Projetos</button>
-    <button class="filter-btn" onclick="filterProd('Acessórios',this)">Acessórios</button>
-  </div>
-  <div class="prod-grid" id="prod-grid"></div>
-  <div id="prod-detail"></div>
 </section>
 
 <!-- GUIA INOX -->
 <section class="section section--dark" id="inox">
-  <div data-reveal="up">
-    <div class="section-label">Guia Técnico do Material</div>
-    <h2 class="section-title">O Aço Inox<br>que Usamos</h2>
-    <p class="section-sub">Entenda as diferenças entre as ligas para tomar a melhor decisão no seu projeto.</p>
-  </div>
-  <div class="inox-grid">
-    <div data-reveal="up">
-      <table class="inox-table">
-        <thead>
-          <tr>
-            <th>Propriedade</th>
-            <th class="col-hi">AISI 304 — Principal</th>
-            <th>AISI 316 — Nobre</th>
-            <th>AISI 430 — Opção</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Magnético?</strong></td>
-            <td class="col-hi">Não (Amagnético)</td>
-            <td>Não (Amagnético)</td>
-            <td>Sim (Magnético)</td>
-          </tr>
-          <tr>
-            <td><strong>Corrosão</strong></td>
-            <td class="col-hi"><strong>Excepcional</strong></td>
-            <td>Soberana — Máx. Química</td>
-            <td>Moderada — Seco Apenas</td>
-          </tr>
-          <tr>
-            <td><strong>Composição</strong></td>
-            <td class="col-hi">8–10% Ni</td>
-            <td>10–14% Ni + 2–3% Mo</td>
-            <td>Isento de Ni/Mo</td>
-          </tr>
-          <tr>
-            <td><strong>Aplicações</strong></td>
-            <td class="col-hi"><em>Bancadas e cozinhas gerais</em></td>
-            <td><em>Fritadeiras, marinhas</em></td>
-            <td><em>Suportes áreas secas</em></td>
-          </tr>
-          <tr>
-            <td><strong>Classificação</strong></td>
-            <td class="col-hi"><span class="badge-best">Padrão NOX</span></td>
-            <td><span class="badge-spec">Técnica Especial</span></td>
-            <td><span class="badge-opt">Custo Reduzido</span></td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="container">
+    <div data-reveal="40">
+      <div class="section-label">Guia técnico do material</div>
+      <h2 class="section-title">O aço inox<br>que <span class="accent-word">usamos</span></h2>
+      <p class="section-sub">Entenda as diferenças entre as ligas para tomar a melhor decisão no seu projeto.</p>
     </div>
-    <div data-reveal="right">
-      <div style="margin-bottom:1.5rem">
-        <div class="section-label">Manutenção &amp; Limpeza</div>
+    <div class="inox-grid">
+      <div data-reveal="40">
+        <table class="inox-table">
+          <thead>
+            <tr>
+              <th>Propriedade</th>
+              <th class="col-hi">AISI 304 — Principal</th>
+              <th>AISI 316 — Nobre</th>
+              <th>AISI 430 — Opção</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Magnético?</strong></td><td class="col-hi">Não (Amagnético)</td><td>Não (Amagnético)</td><td>Sim (Magnético)</td></tr>
+            <tr><td><strong>Corrosão</strong></td><td class="col-hi"><strong>Excepcional</strong></td><td>Soberana — Máx. Química</td><td>Moderada — Seco Apenas</td></tr>
+            <tr><td><strong>Composição</strong></td><td class="col-hi">8–10% Ni</td><td>10–14% Ni + 2–3% Mo</td><td>Isento de Ni/Mo</td></tr>
+            <tr><td><strong>Aplicações</strong></td><td class="col-hi"><em>Bancadas e cozinhas gerais</em></td><td><em>Fritadeiras, marinhas</em></td><td><em>Suportes áreas secas</em></td></tr>
+            <tr><td><strong>Classificação</strong></td><td class="col-hi"><span class="badge-best">Padrão NOX</span></td><td><span class="badge-spec">Técnica Especial</span></td><td><span class="badge-opt">Custo Reduzido</span></td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="care-panel">
-        <div class="care-item">
-          <div class="care-head"><span class="care-dot ok"></span><span class="care-head-label">Fazer — Boas Práticas</span></div>
-          <p class="care-body">Use <strong>sabão ou detergente neutro</strong> e água morna após o expediente diário de trabalho.</p>
-        </div>
-        <div class="care-item">
-          <div class="care-head"><span class="care-dot ok"></span><span class="care-head-label">Fazer</span></div>
-          <p class="care-body"><strong>Seque perfeitamente</strong> com panos macios para evitar manchas minerais da água no inox.</p>
-        </div>
-        <div class="care-item">
-          <div class="care-head"><span class="care-dot ok"></span><span class="care-head-label">Fazer</span></div>
-          <p class="care-body">Siga sempre o sentido do <strong>escovado Scotch-Brite original</strong> ao esfregar.</p>
-        </div>
-        <div class="care-item">
-          <div class="care-head"><span class="care-dot no"></span><span class="care-head-label">Nunca — Proibição Estrita</span></div>
-          <p class="care-body"><strong>Nunca use palha de aço</strong> (ex: Bombril). Ela solta micropartículas de ferro que oxidam no inox.</p>
-        </div>
-        <div class="care-item">
-          <div class="care-head"><span class="care-dot no"></span><span class="care-head-label">Nunca</span></div>
-          <p class="care-body"><strong>Fique longe</strong> de produtos com cloro ativo, água sanitária ou ácidos muriáticos corrosivos.</p>
+      <div data-reveal="40">
+        <div class="section-label" style="margin-bottom:1.5rem">Manutenção &amp; limpeza</div>
+        <div class="care-panel">
+          <div class="care-item">
+            <div class="care-head"><span class="care-dot ok"></span><span class="care-head-label">Fazer — Boas Práticas</span></div>
+            <p class="care-body">Use <strong>sabão ou detergente neutro</strong> e água morna após o expediente diário de trabalho.</p>
+          </div>
+          <div class="care-item">
+            <div class="care-head"><span class="care-dot ok"></span><span class="care-head-label">Fazer</span></div>
+            <p class="care-body"><strong>Seque perfeitamente</strong> com panos macios para evitar manchas minerais da água no inox.</p>
+          </div>
+          <div class="care-item">
+            <div class="care-head"><span class="care-dot ok"></span><span class="care-head-label">Fazer</span></div>
+            <p class="care-body">Siga sempre o sentido do <strong>escovado Scotch-Brite original</strong> ao esfregar.</p>
+          </div>
+          <div class="care-item">
+            <div class="care-head"><span class="care-dot no"></span><span class="care-head-label">Nunca — Proibição Estrita</span></div>
+            <p class="care-body"><strong>Nunca use palha de aço</strong> (ex: Bombril). Ela solta micropartículas de ferro que oxidam no inox.</p>
+          </div>
+          <div class="care-item">
+            <div class="care-head"><span class="care-dot no"></span><span class="care-head-label">Nunca</span></div>
+            <p class="care-body"><strong>Fique longe</strong> de produtos com cloro ativo, água sanitária ou ácidos muriáticos corrosivos.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -358,108 +265,82 @@
 </section>
 
 <!-- CTA STRIP -->
-<div class="cta-strip">
-  <div class="section-label cta-strip-label" data-reveal="up">Pronto para começar?</div>
-  <h2 class="cta-strip-title" data-reveal="up" style="transition-delay:80ms">Solicite seu<br><em>Orçamento</em></h2>
-  <div class="cta-strip-actions" data-reveal="up" style="transition-delay:160ms">
-    <a href="#quote" class="btn-primary">Falar com a Equipe NOX →</a>
-    <a href="tel:+555199999999" class="btn-outline">Ligar Agora</a>
+<section class="cta-strip" id="cta">
+  <img src="assets/images/produtos3.jpg" alt="" aria-hidden="true" class="cta-bg" loading="lazy" width="1920" height="800">
+  <div class="container cta-inner" data-reveal="40">
+    <div class="section-label" style="justify-content:center">Pronto para começar?</div>
+    <h2 class="section-title">Solicite seu <span class="accent-word">orçamento</span></h2>
+    <div class="cta-actions">
+      <a href="#quote" class="btn-primary">Falar com a equipe NOX →</a>
+      <a href="tel:+555100000000" class="btn-outline">Ligar agora</a>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- QUOTE FORM -->
-<section class="section section--alt" id="quote">
-  <div class="quote-grid">
-    <div data-reveal="up">
-      <div class="section-label">Monte seu Projeto</div>
-      <h2 class="quote-left-title">Solicite<br>seu Orçamento</h2>
+<section class="section" id="quote">
+  <div class="container quote-grid">
+    <div data-reveal="40">
+      <div class="section-label">Monte seu projeto</div>
+      <h2 class="quote-left-title display">Solicite seu <span class="accent-word">orçamento</span></h2>
       <p class="quote-left-desc">Nossos engenheiros analisam sua necessidade e enviam um projeto detalhado em CAD 3D com todas as especificações técnicas antes da fabricação. Retorno em até 24 horas úteis.</p>
       <div class="quote-guarantee">
         <span class="quote-guarantee-icon">✦</span>
         <p>Garantia de 6 meses contra defeitos de fabricação. Assistência técnica permanente própria de segunda a sexta, das 8h às 18h.</p>
       </div>
-      <div style="margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--border)">
-        <div class="section-label" style="margin-bottom:1.5rem">Cobertura geográfica</div>
-        <div style="display:flex;flex-direction:column;gap:0.8rem">
-          <div style="display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg3);border:1px solid var(--border)">
-            <span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--accent);letter-spacing:0.1em">BR</span>
-            <span style="font-size:0.85rem;color:var(--muted)">Fabricação e envio para todo o Brasil</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg3);border:1px solid var(--border)">
-            <span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--accent);letter-spacing:0.1em">📍</span>
-            <span style="font-size:0.85rem;color:var(--muted)">Sede em Alvorada, Rio Grande do Sul</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg3);border:1px solid var(--border)">
-            <span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--accent);letter-spacing:0.1em">🔧</span>
-            <span style="font-size:0.85rem;color:var(--muted)">Instalação presencial dependendo do projeto</span>
-          </div>
-        </div>
+      <div class="quote-coverage">
+        <div class="section-label">Cobertura geográfica</div>
+        <div class="coverage-row"><span class="tag">BR</span><span>Fabricação e envio para todo o Brasil</span></div>
+        <div class="coverage-row"><span class="tag">RS</span><span>Sede em Alvorada, Rio Grande do Sul</span></div>
+        <div class="coverage-row"><span class="tag">★</span><span>Instalação presencial dependendo do projeto</span></div>
       </div>
     </div>
-    <div data-reveal="right">
+    <div data-reveal="40">
       <div class="form-box">
-        <div class="form-box-title">Formulário de Orçamento</div>
+        <div class="form-box-title">Formulário de orçamento</div>
         <div class="form-box-sub">Retorno em até 24 horas úteis</div>
-        <div class="form-two-col">
-          <div class="form-group">
-            <label class="form-label">Nome Completo</label>
-            <input type="text" class="form-input" placeholder="Seu nome completo">
+        <form id="quote-form">
+          <div class="form-two-col">
+            <div class="form-group"><label class="form-label">Nome completo</label><input type="text" class="form-input" placeholder="Seu nome completo"></div>
+            <div class="form-group"><label class="form-label">Empresa / Estabelecimento</label><input type="text" class="form-input" placeholder="Nome da empresa"></div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Empresa / Estabelecimento</label>
-            <input type="text" class="form-input" placeholder="Nome da empresa">
+          <div class="form-two-col">
+            <div class="form-group"><label class="form-label">Telefone / WhatsApp</label><input type="tel" class="form-input" placeholder="(51) 9 9999-9999"></div>
+            <div class="form-group"><label class="form-label">E-mail</label><input type="email" class="form-input" placeholder="contato@empresa.com"></div>
           </div>
-        </div>
-        <div class="form-two-col">
-          <div class="form-group">
-            <label class="form-label">Telefone / WhatsApp</label>
-            <input type="tel" class="form-input" placeholder="(51) 9 9999-9999">
+          <div class="form-group"><label class="form-label">Setor de atuação</label>
+            <select class="form-input">
+              <option value="">Selecione o setor</option>
+              <option>Padaria / Confeitaria</option>
+              <option>Restaurante / Bar / Lanchonete</option>
+              <option>Mercado / Supermercado</option>
+              <option>Hospital / Clínica / Laboratório</option>
+              <option>Condomínio / Área Gourmet</option>
+              <option>Indústria Alimentícia</option>
+              <option>Outro</option>
+            </select>
           </div>
-          <div class="form-group">
-            <label class="form-label">E-mail</label>
-            <input type="email" class="form-input" placeholder="contato@empresa.com">
+          <div class="form-group"><label class="form-label">Produto ou projeto de interesse</label>
+            <select class="form-input">
+              <option value="">Selecione o produto</option>
+              <option>Fritadeiras Industriais</option>
+              <option>Fogões Industriais</option>
+              <option>Refrigerador Horizontal com Gavetas</option>
+              <option>Mesas Drink / Estações de Barman</option>
+              <option>Coifas Industriais</option>
+              <option>Equipamentos de Panificação</option>
+              <option>Apoios de Processamento</option>
+              <option>Móveis Sob Medida em Inox</option>
+              <option>Equipamentos para Laboratório / Hospital</option>
+              <option>Cozinha Completa para Condomínio</option>
+              <option>Utensílios / Acessórios</option>
+              <option>Projeto Completo Sob Medida</option>
+            </select>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Setor de Atuação</label>
-          <select class="form-input">
-            <option value="">Selecione o setor</option>
-            <option>Padaria / Confeitaria</option>
-            <option>Restaurante / Bar / Lanchonete</option>
-            <option>Mercado / Supermercado</option>
-            <option>Hospital / Clínica / Laboratório</option>
-            <option>Condomínio / Área Gourmet</option>
-            <option>Indústria Alimentícia</option>
-            <option>Outro</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Produto ou Projeto de Interesse</label>
-          <select class="form-input">
-            <option value="">Selecione o produto</option>
-            <option>Fritadeiras Industriais</option>
-            <option>Fogões Industriais</option>
-            <option>Refrigerador Horizontal com Gavetas</option>
-            <option>Mesas Drink / Estações de Barman</option>
-            <option>Coifas Industriais</option>
-            <option>Equipamentos de Panificação</option>
-            <option>Apoios de Processamento</option>
-            <option>Móveis Sob Medida em Inox</option>
-            <option>Equipamentos para Laboratório / Hospital</option>
-            <option>Cozinha Completa para Condomínio</option>
-            <option>Utensílios / Acessórios</option>
-            <option>Projeto Completo Sob Medida</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Cidade / Estado</label>
-          <input type="text" class="form-input" placeholder="Ex: Porto Alegre / RS">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Descrição do Projeto</label>
-          <textarea class="form-input" placeholder="Descreva suas necessidades, dimensões aproximadas, quantidade, particularidades do espaço..."></textarea>
-        </div>
-        <button class="form-submit" onclick="submitForm(this)">Enviar Solicitação de Orçamento →</button>
+          <div class="form-group"><label class="form-label">Cidade / Estado</label><input type="text" class="form-input" placeholder="Ex: Porto Alegre / RS"></div>
+          <div class="form-group"><label class="form-label">Descrição do projeto</label><textarea class="form-input" placeholder="Descreva suas necessidades, dimensões aproximadas, quantidade, particularidades do espaço..."></textarea></div>
+          <button class="form-submit" type="button" id="quote-submit">Enviar Solicitação de Orçamento →</button>
+        </form>
       </div>
     </div>
   </div>
@@ -469,13 +350,13 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name">N<span>O</span>X</div>
+      <div class="footer-brand-name display">N<span class="accent-word">O</span>X</div>
       <p class="footer-brand-desc">Fabricante e fornecedor de móveis e equipamentos planejados sob medida em aço inox de alto padrão. Fabricação e envio para todo o Brasil, com instalação presencial dependendo do projeto.</p>
-      <div style="margin-top:2rem;display:flex;gap:0.8rem;flex-wrap:wrap">
-        <span style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid var(--border)">AISI 304</span>
-        <span style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid var(--border)">AISI 316</span>
-        <span style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid var(--border)">AISI 430</span>
-        <span style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid var(--border)">ANVISA RDC 50</span>
+      <div class="footer-chips">
+        <span class="footer-chip">AISI 304</span>
+        <span class="footer-chip">AISI 316</span>
+        <span class="footer-chip">AISI 430</span>
+        <span class="footer-chip">ANVISA RDC 50</span>
       </div>
     </div>
     <div>
@@ -486,7 +367,6 @@
         <a href="#produtos">Refrigeradores</a>
         <a href="#produtos">Mesas Drink / Bar</a>
         <a href="#produtos">Coifas Industriais</a>
-        <a href="#produtos">Equipamentos de Panificação</a>
         <a href="#produtos">Móveis Sob Medida</a>
       </div>
     </div>
@@ -503,14 +383,10 @@
     </div>
     <div>
       <div class="footer-col-title">Contato</div>
-      <div class="footer-contact-item">📍 Alvorada, Rio Grande do Sul</div>
-      <div class="footer-contact-item">⏱ Segunda a Sexta — 08h às 18h</div>
-      <div class="footer-contact-item">🔧 Assistência Técnica Permanente</div>
-      <div class="footer-contact-item" style="margin-top:1rem">
-        <div class="footer-col-title" style="margin-bottom:0.8rem">Atendimento</div>
-        Todo o Brasil
-      </div>
-      <a href="#quote" class="btn-primary" style="margin-top:1.5rem;font-size:0.65rem">Solicitar Orçamento →</a>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Alvorada, Rio Grande do Sul</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Segunda a Sexta — 08h às 18h</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6 2.7 2.7 6-6a4 4 0 0 0 5.4-5.4l-2.4 2.4-2-2z"/></svg>Assistência Técnica Permanente</div>
+      <a href="#quote" class="btn-primary" style="margin-top:1.2rem">Solicitar Orçamento →</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -518,6 +394,7 @@
     <span>Fabricação desde 2005</span>
   </div>
 </footer>
-  <script type="module" src="assets/js/main.js"></script>
+
+<script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
