@@ -25,7 +25,7 @@ body{font-family:var(--font-body);font-weight:300;font-size:16px;line-height:1.7
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none;cursor:none}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-button{font-family:inherit;cursor:none;border:none;background:none}
+button{font-family:inherit;cursor:none;border:none;background:none;color:inherit}
 ::selection{background:var(--accent);color:#000}
 
 /* ============================================================
@@ -84,10 +84,10 @@ nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 /* ============================================================
    SECTIONS / TITLES / EYEBROW
 ============================================================ */
-.section{padding:clamp(5rem,10vw,9rem) clamp(1.5rem,5vw,5rem);position:relative}
+.section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(5rem,10vw,9rem) clamp(1.5rem,5vw,5rem);position:relative}
 .section--alt{background:var(--bg2)}
 .section--dark{background:var(--bg3)}
-.container{max-width:1320px;margin:0 auto}
+.container{max-width:1320px;margin:0 auto;width:100%}
 .display{font-family:var(--font-display);font-weight:600;line-height:0.95;letter-spacing:-0.01em}
 .section-title{font-family:var(--font-display);font-weight:600;font-size:clamp(2.6rem,6vw,5.5rem);line-height:0.98;letter-spacing:-0.01em}
 .accent-word{color:var(--accent)}
@@ -144,7 +144,7 @@ nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 /* ============================================================
    MANIFESTO (over image)
 ============================================================ */
-.manifesto-section{position:relative;padding:clamp(6rem,14vw,11rem) clamp(1.5rem,5vw,5rem);overflow:hidden}
+.manifesto-section{position:relative;min-height:100vh;display:flex;align-items:center;padding:clamp(6rem,14vw,11rem) clamp(1.5rem,5vw,5rem);overflow:hidden}
 .manifesto-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(0.4) brightness(0.28)}
 .manifesto-inner{position:relative;z-index:1}
 .manifesto-text{font-size:clamp(1.8rem,4.5vw,3.6rem);font-weight:500;line-height:1.15;max-width:20ch}
@@ -192,14 +192,14 @@ nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
 .prod-card{text-align:left;background:var(--steel-grad);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;position:relative;box-shadow:var(--shadow-sm);transition:transform .35s var(--ease),box-shadow .35s}
 .prod-card:hover{transform:translateY(-6px);box-shadow:var(--glow-accent)}
-.prod-media{aspect-ratio:4/3;overflow:hidden;background:#0a0a0a}
+.prod-media{aspect-ratio:1/1;overflow:hidden;background:#0a0a0a}
 .prod-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
 .prod-card:hover .prod-media img{transform:scale(1.04)}
 .prod-media--fallback{display:flex;align-items:center;justify-content:center;color:var(--faint)}
 .prod-media--fallback svg{width:64px;height:64px}
 .prod-card-body{padding:1.4rem}
 .prod-cat{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
-.prod-name{font-family:var(--font-display);font-weight:600;font-size:1.2rem;margin:0.4rem 0;line-height:1.15}
+.prod-name{font-family:var(--font-display);font-weight:600;font-size:1.2rem;margin:0.4rem 0;line-height:1.15;color:var(--text)}
 .prod-short{color:var(--muted);font-size:0.85rem}
 .prod-badge{display:inline-block;margin-top:0.8rem;font-family:var(--font-mono);font-size:0.58rem;color:var(--accent);border:1px solid rgba(255,197,0,0.35);border-radius:var(--r-pill);padding:0.2rem 0.6rem}
 .prod-arrow{position:absolute;top:1rem;right:1rem;color:var(--accent);opacity:0;transition:opacity .3s}
@@ -211,9 +211,9 @@ nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 .prod-detail-grid{display:grid;grid-template-columns:1.3fr 0.7fr;gap:2rem}
 .prod-gallery{margin-bottom:2rem}
 .prod-gallery-main{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);box-shadow:var(--glow-soft);background:#0a0a0a}
-.prod-gallery-main img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.prod-gallery-main img{width:100%;aspect-ratio:1/1;object-fit:cover}
 .prod-thumbs{display:flex;gap:0.5rem;margin-top:0.7rem;overflow-x:auto;padding-bottom:0.3rem}
-.thumb{flex:0 0 auto;width:72px;height:54px;border-radius:var(--r-sm);overflow:hidden;border:1px solid var(--border);opacity:0.6;transition:opacity .3s,border-color .3s}
+.thumb{flex:0 0 auto;width:64px;height:64px;border-radius:var(--r-sm);overflow:hidden;border:1px solid var(--border);opacity:0.6;transition:opacity .3s,border-color .3s}
 .thumb img{width:100%;height:100%;object-fit:cover}
 .thumb.active,.thumb:hover{opacity:1;border-color:var(--accent)}
 .prod-features-title,.prod-specs-title,.prod-options-title{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem}
@@ -259,7 +259,7 @@ nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 /* ============================================================
    CTA STRIP (over image)
 ============================================================ */
-.cta-strip{position:relative;padding:clamp(5rem,12vw,9rem) clamp(1.5rem,5vw,5rem);overflow:hidden;text-align:center}
+.cta-strip{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(5rem,12vw,9rem) clamp(1.5rem,5vw,5rem);overflow:hidden;text-align:center}
 .cta-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(0.4) brightness(0.25)}
 .cta-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.2rem}
 .cta-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}

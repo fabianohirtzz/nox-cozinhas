@@ -107,11 +107,6 @@ const PRODUTOS = [
     specs:{Material:'AISI 304 para pias e áreas úmidas / AISI 430 para áreas secas',Garantia:'6 meses',Dimensões:'Desenvolvido conforme planta e cotas enviadas',Capacidade:'Prateleiras suportam 50kg a 150kg distribuído',Acabamento:'Escovado Scotch-Brite elegante'},
     options:[{label:'Tipo de Inox',values:['AISI 304 (Áreas Úmidas)','AISI 430 (Áreas Secas)']},{label:'Portas',values:['Sem Portas (Estante aberta)','Portas de Correr Deslizantes','Portas de Abrir com Dobradiças']}]
   },
-  { id:'utensilios', cat:'Acessórios', pop:false, name:'Utensílios e Acessórios Profissionais', short:'Cubas GN, escorredores, panelas e recipientes de alto padrão.',
-    features:['Cubas GN com bordas arredondadas e reforço contra deformação térmica','Escorredores de pratos suspensos para montagem em parede','Ganchos e barras de suspensão de utensílios de rápida instalação','Panelas gastronômicas de parede tripla para cocção rápida','Pegadores certificados pela ANVISA'],
-    specs:{Material:'Aço Inox AISI 304 sanitário de qualidade alimentícia',Garantia:'6 meses contra defeitos de estampagem',Dimensões:'Padronização internacional Gastronorm (GN)',Acabamento:'Polimento espelhado brilhante interno e externo'},
-    options:[{label:'Tipo',values:['Recipientes Gastronorm (GN)','Escorredor de Parede','Organizadores Sob Medida']}]
-  },
   { id:'hospitais', cat:'Biossegurança', pop:true, name:'Equipamentos para Laboratórios e Hospitais', short:'Cubas assépticas, expurgos cirúrgicos e mobiliário de alta esterilidade.',
     features:['Cantos internos totalmente arredondados (raio ≥10mm) sem frestas','Expurgo com tampa pesada basculante e acionamento hidráulico','Torneiras com acionador de cotovelo, pedal ou sensor óptico','Alta resistência a cloro, desinfetantes e autoclaves térmicos','Acabamento ultra-polido que impede a fixação de fungos e bactérias'],
     specs:{Material:'Aço Inox AISI 304 de alta liga (antisséptico por excelência)',Garantia:'6 meses contra corrosão química superficial',Norma:'ANVISA RDC 50 de engenharia clínica',Capacidade:'Cubas profundas de 40 a 120 litros para lavagem cirúrgica',Acabamento:'Polimento espelhado sanitário total de alta reflexibilidade'},
@@ -130,6 +125,12 @@ const GAL = {
   fogoes:       Array.from({length:4}, (_,i)=>`assets/products/fogao1-${i+1}.png`),
   refrigerador: Array.from({length:4}, (_,i)=>`assets/products/refrigeracao1-${i+1}.png`),
   moveis:       Array.from({length:10},(_,i)=>`assets/products/mobiliario1-${i+1}.png`),
+  mesas_drink:  ['assets/products/mobiliario1-2.png'],
+  coifas:       ['assets/products/exaustao-1.png'],
+  panificacao:  ['assets/products/mobiliario1-4.png'],
+  processamento:['assets/products/mobiliario1-8.png'],
+  hospitais:    ['assets/products/mobiliario1-7.png'],
+  condominios:  ['assets/products/projetos-1.png'],
 };
 PRODUTOS.forEach(p=>{ if(GAL[p.id]){ p.gallery=GAL[p.id]; p.hero=GAL[p.id][0]; } });
 
@@ -165,7 +166,7 @@ renderSetor(0);
 let activeProdId=null;
 function prodCardMedia(p){
   return p.hero
-    ? `<div class="prod-media"><img src="${p.hero}" alt="${p.name}" loading="lazy" width="600" height="450"></div>`
+    ? `<div class="prod-media"><img src="${p.hero}" alt="${p.name}" loading="lazy" width="600" height="600"></div>`
     : `<div class="prod-media prod-media--fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 14l4-4 5 5 3-3 6 6"/></svg></div>`;
 }
 function renderProds(cat){
@@ -197,8 +198,8 @@ function openProd(id){
   const opts=(p.options||[]).map(o=>`<div class="options-group"><div class="options-group-label">${o.label}</div><div class="options-chips">${o.values.map(v=>`<button class="option-chip">${v}</button>`).join('')}</div></div>`).join('');
   const gallery=p.gallery?`
     <div class="prod-gallery">
-      <div class="prod-gallery-main"><img id="gal-main" src="${p.hero}" alt="${p.name}" width="800" height="600"></div>
-      <div class="prod-thumbs">${p.gallery.map((src,i)=>`<button class="thumb${i===0?' active':''}" data-src="${src}"><img src="${src}" alt="" loading="lazy" width="120" height="90"></button>`).join('')}</div>
+      <div class="prod-gallery-main"><img id="gal-main" src="${p.hero}" alt="${p.name}" width="800" height="800"></div>
+      ${p.gallery.length>1?`<div class="prod-thumbs">${p.gallery.map((src,i)=>`<button class="thumb${i===0?' active':''}" data-src="${src}"><img src="${src}" alt="" loading="lazy" width="120" height="120"></button>`).join('')}</div>`:''}
     </div>`:'';
   detail.innerHTML=`
     <div class="prod-detail-panel">
