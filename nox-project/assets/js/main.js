@@ -1,84 +1,34 @@
-/* ============================================================
-   CURSOR
-============================================================ */
+import { animate, scroll, inView, stagger, hover, press } from "https://cdn.jsdelivr.net/npm/motion@12.40.0/+esm";
+
+const REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const EASE = [0.16, 1, 0.3, 1];
+
+/* CURSOR */
 const cursor = document.getElementById('cursor');
-const ring   = document.getElementById('cursor-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.addEventListener('mousedown',()=>document.body.classList.add('clicking'));
+document.addEventListener('mouseup',()=>document.body.classList.remove('clicking'));
+const HOVER_SEL = 'a,button,.setor-tab,.prod-card,.filter-btn,.dif-item,.option-chip,.setor-prod-tag,.thumb';
+function bindCursor(root=document){root.querySelectorAll(HOVER_SEL).forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));});}
+bindCursor();
 
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.left = mx + 'px';
-  cursor.style.top  = my + 'px';
-});
+/* LOADER */
+const loaderEl=document.getElementById('loader'),loaderLogo=document.getElementById('loader-logo'),loaderBar=document.getElementById('loader-bar'),loaderPct=document.getElementById('loader-pct');
+document.body.style.overflow='hidden';
+setTimeout(()=>loaderLogo.classList.add('show'),200);
+let pct=0;const li=setInterval(()=>{pct+=Math.random()*18+4;if(pct>=100){pct=100;clearInterval(li);}loaderBar.style.width=pct+'%';loaderPct.textContent=Math.round(pct)+'%';if(pct>=100)setTimeout(()=>{loaderEl.classList.add('hidden');document.body.style.overflow='auto';},500);},120);
 
-(function animateRing() {
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  ring.style.left = rx + 'px';
-  ring.style.top  = ry + 'px';
-  requestAnimationFrame(animateRing);
-})();
-
-document.querySelectorAll('a,button,.setor-tab,.prod-card,.filter-btn,.dif-item').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-});
-
-document.addEventListener('mousedown', () => document.body.classList.add('clicking'));
-document.addEventListener('mouseup',   () => document.body.classList.remove('clicking'));
-
-/* ============================================================
-   LOADER
-============================================================ */
-const loaderEl  = document.getElementById('loader');
-const loaderLogo= document.getElementById('loader-logo');
-const loaderBar = document.getElementById('loader-bar');
-const loaderPct = document.getElementById('loader-pct');
-
-setTimeout(() => loaderLogo.classList.add('show'), 200);
-
-let pct = 0;
-const loadInterval = setInterval(() => {
-  pct += Math.random() * 18 + 4;
-  if (pct >= 100) { pct = 100; clearInterval(loadInterval); }
-  loaderBar.style.width = pct + '%';
-  loaderPct.textContent = Math.round(pct) + '%';
-  if (pct >= 100) {
-    setTimeout(() => {
-      loaderEl.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }, 500);
-  }
-}, 120);
-
-document.body.style.overflow = 'hidden';
-
-/* ============================================================
-   SCROLL PROGRESS + NAV
-============================================================ */
-const navEl = document.getElementById('nav');
-const prog  = document.getElementById('scroll-progress');
-
-window.addEventListener('scroll', () => {
-  navEl.classList.toggle('scrolled', window.scrollY > 60);
-  const el  = document.documentElement;
-  const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
-  prog.style.width = pct + '%';
-}, { passive: true });
-
-/* ============================================================
-   SCROLL REVEAL
-============================================================ */
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+/* SCROLL: nav state + progress (single passive listener) */
+const navEl=document.getElementById('nav');
+if(REDUCE){
+  window.addEventListener('scroll',()=>{navEl.classList.toggle('scrolled',window.scrollY>60);const d=document.documentElement;document.getElementById('scroll-progress').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';},{passive:true});
+}else{
+  scroll(animate('#scroll-progress',{scaleX:[0,1]},{ease:'linear'}));
+  window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+}
 
 /* ============================================================
    DADOS
@@ -174,133 +124,173 @@ const PRODUTOS = [
   }
 ];
 
+/* galerias reais (fundo inox) — anexa hero + gallery aos produtos fotografados */
+const GAL = {
+  fritadeiras:  Array.from({length:13},(_,i)=>`assets/products/fritadeira1-${i+1}.png`),
+  fogoes:       Array.from({length:4}, (_,i)=>`assets/products/fogao1-${i+1}.png`),
+  refrigerador: Array.from({length:4}, (_,i)=>`assets/products/refrigeracao1-${i+1}.png`),
+  moveis:       Array.from({length:10},(_,i)=>`assets/products/mobiliario1-${i+1}.png`),
+};
+PRODUTOS.forEach(p=>{ if(GAL[p.id]){ p.gallery=GAL[p.id]; p.hero=GAL[p.id][0]; } });
+
 /* ============================================================
    SETORES
 ============================================================ */
-function selectSetor(idx, el) {
-  document.querySelectorAll('.setor-tab').forEach((t,i) => t.classList.toggle('active', i === idx));
-  const s = SETORES[idx];
-  const container = document.getElementById('setor-panel-container');
-  container.innerHTML = `
-    <div class="setor-panel open">
+function renderSetor(idx){
+  document.querySelectorAll('.setor-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  const s=SETORES[idx];
+  document.getElementById('setor-panel-container').innerHTML=`
+    <div class="setor-panel">
       <div class="setor-panel-grid">
         <div>
           <h3 class="setor-panel-name">${s.name}</h3>
           <p class="setor-panel-desc">${s.desc}</p>
           <div class="setor-prods">${s.prods.map(p=>`<span class="setor-prod-tag">${p}</span>`).join('')}</div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:1rem;align-items:flex-start">
-          <p style="font-size:0.82rem;color:var(--muted);font-style:italic">${s.tagline}</p>
-          <a href="#quote" class="btn-primary">Solicitar Projeto para este Setor →</a>
+        <div class="setor-panel-side">
+          <p class="setor-tagline">${s.tagline}</p>
+          <a href="#quote" class="btn-primary">Solicitar projeto →</a>
         </div>
       </div>
-    </div>
-  `;
+    </div>`;
+  if(!REDUCE)animate('.setor-panel',{opacity:[0,1],y:[16,0]},{duration:0.45,ease:EASE});
+  bindCursor(document.getElementById('setor-panel-container'));
 }
-selectSetor(0, null);
+document.getElementById('setores-tabs').addEventListener('click',e=>{const t=e.target.closest('.setor-tab');if(t)renderSetor(+t.dataset.setor);});
+renderSetor(0);
 
 /* ============================================================
    PRODUTOS
 ============================================================ */
-let activeProdId = null;
-
-function renderProds(cat) {
-  const grid = document.getElementById('prod-grid');
-  const detail = document.getElementById('prod-detail');
-  detail.innerHTML = '';
-  activeProdId = null;
-  const items = cat === 'all' ? PRODUTOS : PRODUTOS.filter(p => p.cat === cat);
-  grid.innerHTML = items.map(p => `
-    <div class="prod-card" onclick="openProd('${p.id}')">
-      <div class="prod-cat">${p.cat}</div>
-      <div class="prod-name">${p.name}</div>
-      <div class="prod-short">${p.short}</div>
-      ${p.pop ? '<span class="prod-badge">★ Popular</span>' : ''}
-      <div class="prod-arrow">↗</div>
-    </div>
-  `).join('');
+let activeProdId=null;
+function prodCardMedia(p){
+  return p.hero
+    ? `<div class="prod-media"><img src="${p.hero}" alt="${p.name}" loading="lazy" width="600" height="450"></div>`
+    : `<div class="prod-media prod-media--fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 14l4-4 5 5 3-3 6 6"/></svg></div>`;
+}
+function renderProds(cat){
+  const grid=document.getElementById('prod-grid');
+  document.getElementById('prod-detail').innerHTML=''; activeProdId=null;
+  const items=cat==='all'?PRODUTOS:PRODUTOS.filter(p=>p.cat===cat);
+  grid.innerHTML=items.map(p=>`
+    <button class="prod-card" data-prod="${p.id}">
+      ${prodCardMedia(p)}
+      <div class="prod-card-body">
+        <div class="prod-cat">${p.cat}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-short">${p.short}</div>
+        ${p.pop?'<span class="prod-badge">★ Popular</span>':''}
+      </div>
+      <span class="prod-arrow">↗</span>
+    </button>`).join('');
+  if(!REDUCE)animate('.prod-card',{opacity:[0,1],y:[20,0]},{duration:0.5,ease:EASE,delay:stagger(0.05)});
+  bindCursor(grid);
 }
 
-function openProd(id) {
-  const detail = document.getElementById('prod-detail');
-  if (activeProdId === id) { detail.innerHTML=''; activeProdId=null; return; }
-  activeProdId = id;
-  const p = PRODUTOS.find(x => x.id === id);
-  if (!p) return;
-  const feats = p.features.map(f => `<li><span></span>${f}</li>`).join('');
-  const specs = Object.entries(p.specs).map(([k,v]) => `
-    <div class="spec-row"><span class="spec-key">${k}</span><span class="spec-val">${v}</span></div>
-  `).join('');
-  const opts = p.options ? p.options.map(o => `
-    <div class="options-group">
-      <div class="options-group-label">${o.label}</div>
-      <div class="options-chips">${o.values.map(v=>`<button class="option-chip" onclick="this.classList.toggle('selected')">${v}</button>`).join('')}</div>
-    </div>
-  `).join('') : '';
-
-  detail.innerHTML = `
-    <div class="prod-detail-panel open">
+function openProd(id){
+  const detail=document.getElementById('prod-detail');
+  if(activeProdId===id){detail.innerHTML='';activeProdId=null;return;}
+  activeProdId=id;
+  const p=PRODUTOS.find(x=>x.id===id); if(!p)return;
+  const feats=p.features.map(f=>`<li>${f}</li>`).join('');
+  const specs=Object.entries(p.specs).map(([k,v])=>`<div class="spec-row"><span class="spec-key">${k}</span><span class="spec-val">${v}</span></div>`).join('');
+  const opts=(p.options||[]).map(o=>`<div class="options-group"><div class="options-group-label">${o.label}</div><div class="options-chips">${o.values.map(v=>`<button class="option-chip">${v}</button>`).join('')}</div></div>`).join('');
+  const gallery=p.gallery?`
+    <div class="prod-gallery">
+      <div class="prod-gallery-main"><img id="gal-main" src="${p.hero}" alt="${p.name}" width="800" height="600"></div>
+      <div class="prod-thumbs">${p.gallery.map((src,i)=>`<button class="thumb${i===0?' active':''}" data-src="${src}"><img src="${src}" alt="" loading="lazy" width="120" height="90"></button>`).join('')}</div>
+    </div>`:'';
+  detail.innerHTML=`
+    <div class="prod-detail-panel">
       <div class="prod-detail-header">
-        <div>
-          <div class="prod-cat">${p.cat}</div>
-          <h3 class="prod-detail-title">${p.name}</h3>
-        </div>
-        <div style="display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center">
-          <a href="#quote" class="btn-primary">Solicitar Orçamento →</a>
-          <button class="btn-outline" onclick="closeProd()">✕ Fechar</button>
-        </div>
+        <div><div class="prod-cat">${p.cat}</div><h3 class="prod-detail-title">${p.name}</h3></div>
+        <div class="prod-detail-actions"><a href="#quote" class="btn-primary">Solicitar Orçamento →</a><button class="btn-outline" data-close>✕ Fechar</button></div>
       </div>
       <div class="prod-detail-grid">
-        <div>
+        <div class="prod-detail-left">
+          ${gallery}
           <div class="prod-features-title">Características Técnicas</div>
           <ul class="features-list">${feats}</ul>
-          ${opts ? `<div class="prod-options"><div class="prod-options-title">Configurações Disponíveis</div>${opts}</div>` : ''}
+          ${opts?`<div class="prod-options"><div class="prod-options-title">Configurações Disponíveis</div>${opts}</div>`:''}
         </div>
         <div>
           <div class="prod-specs-title">Especificações</div>
           <div class="specs-list">${specs}</div>
         </div>
       </div>
-    </div>
-  `;
-  setTimeout(() => detail.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
+    </div>`;
+  bindCursor(detail);
+  if(!REDUCE)animate('.prod-detail-panel',{opacity:[0,1],y:[16,0]},{duration:0.45,ease:EASE});
+  setTimeout(()=>detail.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
 }
 
-function closeProd() {
-  document.getElementById('prod-detail').innerHTML = '';
-  activeProdId = null;
+function swapThumb(btn){
+  const main=document.getElementById('gal-main'); if(!main)return;
+  document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active')); btn.classList.add('active');
+  if(REDUCE){main.src=btn.dataset.src;return;}
+  animate(main,{opacity:[1,0]},{duration:0.15}).then(()=>{main.src=btn.dataset.src;animate(main,{opacity:[0,1]},{duration:0.25,ease:EASE});});
 }
 
-function filterProd(cat, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderProds(cat);
-}
-
+document.getElementById('filter-bar').addEventListener('click',e=>{const b=e.target.closest('.filter-btn');if(!b)return;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderProds(b.dataset.cat);});
+document.getElementById('produtos').addEventListener('click',e=>{
+  const card=e.target.closest('.prod-card'); if(card){openProd(card.dataset.prod);return;}
+  const thumb=e.target.closest('.thumb'); if(thumb){swapThumb(thumb);return;}
+  if(e.target.closest('[data-close]')){document.getElementById('prod-detail').innerHTML='';activeProdId=null;return;}
+  const chip=e.target.closest('.option-chip'); if(chip){chip.classList.toggle('selected');}
+});
 renderProds('all');
 
 /* ============================================================
    FORM
 ============================================================ */
-function submitForm(btn) {
-  btn.textContent = '✓ Solicitação Enviada — Retorno em até 24h';
-  btn.style.background = '#1a1a1a';
-  btn.style.color = 'var(--accent)';
-  btn.style.border = '1px solid var(--accent)';
-  btn.disabled = true;
+const qs=document.getElementById('quote-submit');
+if(qs)qs.addEventListener('click',()=>{
+  qs.textContent='✓ Solicitação enviada — retorno em até 24h';
+  qs.style.background='var(--bg4)';qs.style.color='var(--accent)';qs.style.border='1px solid var(--accent)';qs.disabled=true;
+  if(!REDUCE)animate(qs,{scale:[0.98,1]},{type:'spring',visualDuration:0.3,bounce:0.2});
+});
+
+/* ============================================================
+   REVEAL + STAGGER (Motion)
+============================================================ */
+function reveal(){
+  if(REDUCE){document.querySelectorAll('[data-reveal],[data-reveal-item]').forEach(el=>el.classList.add('reveal-done'));return;}
+  document.querySelectorAll('[data-reveal]').forEach(el=>{
+    const y=parseInt(el.dataset.reveal||'40',10);
+    const stop=inView(el,()=>{animate(el,{opacity:[0,1],y:[y,0]},{duration:0.7,ease:EASE});el.classList.add('reveal-done');stop();},{amount:0.2,margin:'0px 0px -60px 0px'});
+  });
+  document.querySelectorAll('[data-reveal-group]').forEach(group=>{
+    const kids=group.querySelectorAll('[data-reveal-item]');
+    if(!kids.length)return;
+    const stop=inView(group,()=>{animate(kids,{opacity:[0,1],y:[24,0]},{duration:0.6,ease:EASE,delay:stagger(0.08)});kids.forEach(k=>k.classList.add('reveal-done'));stop();},{amount:0.15});
+  });
+}
+reveal();
+
+/* ============================================================
+   HERO (parallax + staged entrance)
+============================================================ */
+if(!REDUCE){
+  scroll(animate('.hero-img',{y:[-40,40]},{ease:'linear'}),{target:document.querySelector('.hero'),offset:['start start','end start']});
+  animate('.hero-eyebrow',{opacity:[0,1],y:[20,0]},{duration:0.7,delay:0.2,ease:EASE});
+  animate('.hero-h1',{opacity:[0,1],y:[30,0]},{duration:0.9,delay:0.35,ease:EASE});
+  animate('.hero-desc',{opacity:[0,1],y:[20,0]},{duration:0.7,delay:0.55,ease:EASE});
+  animate('.hero-actions',{opacity:[0,1],y:[20,0]},{duration:0.7,delay:0.7,ease:EASE});
 }
 
 /* ============================================================
-   HOVER PARA CURSOR EM ELEMENTOS DINÂMICOS
+   COUNT-UP (metrics)
 ============================================================ */
-function bindCursor() {
-  document.querySelectorAll('.prod-card,.filter-btn,.option-chip,.setor-prod-tag,.setor-tab,.btn-outline,.btn-ghost').forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+function countUp(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target=+el.dataset.count;
+    if(REDUCE){el.textContent=target;return;}
+    const stop=inView(el,()=>{animate(0,target,{duration:1.4,ease:EASE,onUpdate:v=>el.textContent=Math.round(v)});stop();},{amount:0.6});
   });
 }
+countUp();
 
-const origRender = renderProds;
-renderProds = function(cat) { origRender(cat); setTimeout(bindCursor, 0); };
-renderProds('all');
-bindCursor();
+/* ============================================================
+   PRESS FEEDBACK (accessible)
+============================================================ */
+if(!REDUCE)press('.btn-primary',el=>{animate(el,{scale:0.96},{duration:0.12});return()=>animate(el,{scale:1},{type:'spring',visualDuration:0.3,bounce:0.2});});
