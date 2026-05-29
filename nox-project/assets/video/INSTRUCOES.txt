@@ -1,0 +1,16 @@
+VÍDEO HERO — 9:16
+═══════════════════════════════════════
+Coloque seu vídeo nesta pasta com o nome:
+  hero-video.mp4
+
+Especificações recomendadas:
+  Formato:     MP4 (H.264)
+  Proporção:   9:16 (vertical)
+  Resolução:   1080 x 1920px
+  Duração:     15–30 segundos (loop)
+
+No index.html, o trecho já está preparado:
+  <video src="assets/video/hero-video.mp4" autoplay muted loop playsinline ...>
+
+Basta adicionar o arquivo e remover o bloco placeholder.
+═══════════════════════════════════════
