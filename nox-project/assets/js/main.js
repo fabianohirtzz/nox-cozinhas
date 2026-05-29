@@ -239,3 +239,12 @@ function submitForm(btn) {
   btn.style.border = '1px solid var(--accent)';
   btn.disabled = true;
 }
+
+/* TEMP: expose handlers for inline onclick until Tasks 11/12/15 move them to addEventListener.
+   These window.* assignments (and the inline onclick in index.html) are removed by those tasks. */
+window.selectSetor = selectSetor;
+window.renderProds = renderProds;
+window.openProd    = openProd;
+window.closeProd   = closeProd;
+window.filterProd  = filterProd;
+window.submitForm  = submitForm;
