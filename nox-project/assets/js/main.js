@@ -1,84 +1,34 @@
-/* ============================================================
-   CURSOR
-============================================================ */
+import { animate, scroll, inView, stagger, hover, press } from "https://cdn.jsdelivr.net/npm/motion@12.40.0/+esm";
+
+const REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const EASE = [0.16, 1, 0.3, 1];
+
+/* CURSOR */
 const cursor = document.getElementById('cursor');
-const ring   = document.getElementById('cursor-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.addEventListener('mousedown',()=>document.body.classList.add('clicking'));
+document.addEventListener('mouseup',()=>document.body.classList.remove('clicking'));
+const HOVER_SEL = 'a,button,.setor-tab,.prod-card,.filter-btn,.dif-item,.option-chip,.setor-prod-tag,.thumb';
+function bindCursor(root=document){root.querySelectorAll(HOVER_SEL).forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));});}
+bindCursor();
 
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.left = mx + 'px';
-  cursor.style.top  = my + 'px';
-});
+/* LOADER */
+const loaderEl=document.getElementById('loader'),loaderLogo=document.getElementById('loader-logo'),loaderBar=document.getElementById('loader-bar'),loaderPct=document.getElementById('loader-pct');
+document.body.style.overflow='hidden';
+setTimeout(()=>loaderLogo.classList.add('show'),200);
+let pct=0;const li=setInterval(()=>{pct+=Math.random()*18+4;if(pct>=100){pct=100;clearInterval(li);}loaderBar.style.width=pct+'%';loaderPct.textContent=Math.round(pct)+'%';if(pct>=100)setTimeout(()=>{loaderEl.classList.add('hidden');document.body.style.overflow='auto';},500);},120);
 
-(function animateRing() {
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  ring.style.left = rx + 'px';
-  ring.style.top  = ry + 'px';
-  requestAnimationFrame(animateRing);
-})();
-
-document.querySelectorAll('a,button,.setor-tab,.prod-card,.filter-btn,.dif-item').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-});
-
-document.addEventListener('mousedown', () => document.body.classList.add('clicking'));
-document.addEventListener('mouseup',   () => document.body.classList.remove('clicking'));
-
-/* ============================================================
-   LOADER
-============================================================ */
-const loaderEl  = document.getElementById('loader');
-const loaderLogo= document.getElementById('loader-logo');
-const loaderBar = document.getElementById('loader-bar');
-const loaderPct = document.getElementById('loader-pct');
-
-setTimeout(() => loaderLogo.classList.add('show'), 200);
-
-let pct = 0;
-const loadInterval = setInterval(() => {
-  pct += Math.random() * 18 + 4;
-  if (pct >= 100) { pct = 100; clearInterval(loadInterval); }
-  loaderBar.style.width = pct + '%';
-  loaderPct.textContent = Math.round(pct) + '%';
-  if (pct >= 100) {
-    setTimeout(() => {
-      loaderEl.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }, 500);
-  }
-}, 120);
-
-document.body.style.overflow = 'hidden';
-
-/* ============================================================
-   SCROLL PROGRESS + NAV
-============================================================ */
-const navEl = document.getElementById('nav');
-const prog  = document.getElementById('scroll-progress');
-
-window.addEventListener('scroll', () => {
-  navEl.classList.toggle('scrolled', window.scrollY > 60);
-  const el  = document.documentElement;
-  const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
-  prog.style.width = pct + '%';
-}, { passive: true });
-
-/* ============================================================
-   SCROLL REVEAL
-============================================================ */
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+/* SCROLL: nav state + progress (single passive listener) */
+const navEl=document.getElementById('nav');
+if(REDUCE){
+  window.addEventListener('scroll',()=>{navEl.classList.toggle('scrolled',window.scrollY>60);const d=document.documentElement;document.getElementById('scroll-progress').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';},{passive:true});
+}else{
+  scroll(animate('#scroll-progress',{scaleX:[0,1]},{ease:'linear'}));
+  window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+}
 
 /* ============================================================
    DADOS
@@ -289,18 +239,3 @@ function submitForm(btn) {
   btn.style.border = '1px solid var(--accent)';
   btn.disabled = true;
 }
-
-/* ============================================================
-   HOVER PARA CURSOR EM ELEMENTOS DINÂMICOS
-============================================================ */
-function bindCursor() {
-  document.querySelectorAll('.prod-card,.filter-btn,.option-chip,.setor-prod-tag,.setor-tab,.btn-outline,.btn-ghost').forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-  });
-}
-
-const origRender = renderProds;
-renderProds = function(cat) { origRender(cat); setTimeout(bindCursor, 0); };
-renderProds('all');
-bindCursor();
