@@ -128,13 +128,9 @@ nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 /* ============================================================
    ABOUT (editorial + floating photos + metrics)
 ============================================================ */
-.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(2rem,5vw,4rem);align-items:start}
 .about-text p{color:var(--muted);margin:1rem 0;max-width:48ch}
 .about-text strong{color:var(--text);font-weight:500}
-.about-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
-.about-photo{border-radius:var(--r-lg);box-shadow:var(--shadow-md);border:1px solid var(--border);object-fit:cover;width:100%}
-.about-photo.a{height:320px;transform:translateY(12px)}
-.about-photo.b{height:260px}
 .metrics-block{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .metric-cell{background:var(--steel-grad);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.8rem;box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s}
 .metric-cell:hover{transform:translateY(-4px);box-shadow:var(--glow-accent)}
