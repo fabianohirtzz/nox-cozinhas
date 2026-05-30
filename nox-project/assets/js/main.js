@@ -269,10 +269,16 @@ function reveal(){
 reveal();
 
 /* ============================================================
-   HERO (parallax + staged entrance)
+   HERO (responsive bg video + staged entrance)
 ============================================================ */
+const heroVideo=document.getElementById('hero-video');
+if(heroVideo){
+  heroVideo.src = window.matchMedia('(max-width: 760px)').matches
+    ? 'assets/videos/video-mobile.mp4'
+    : 'assets/videos/video-desktop.mp4';
+  if(REDUCE){ heroVideo.removeAttribute('autoplay'); heroVideo.addEventListener('loadeddata',()=>heroVideo.pause(),{once:true}); }
+}
 if(!REDUCE){
-  scroll(animate('.hero-img',{y:[-40,40]},{ease:'linear'}),{target:document.querySelector('.hero'),offset:['start start','end start']});
   animate('.hero-eyebrow',{opacity:[0,1],y:[20,0]},{duration:0.7,delay:0.2,ease:EASE});
   animate('.hero-h1',{opacity:[0,1],y:[30,0]},{duration:0.9,delay:0.35,ease:EASE});
   animate('.hero-desc',{opacity:[0,1],y:[20,0]},{duration:0.7,delay:0.55,ease:EASE});
