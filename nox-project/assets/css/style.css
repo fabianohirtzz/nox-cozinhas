@@ -68,7 +68,7 @@ nav{position:fixed;top:1rem;left:0;right:0;z-index:9000;padding:0 clamp(1rem,4vw
 .nav-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.7rem 0.8rem 0.7rem 1.4rem;background:rgba(13,13,13,0.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:var(--r-pill);transition:background .3s,border-color .3s}
 nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 .nav-links{display:flex;gap:1.8rem}
-.nav-link{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+.nav-link{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(236,232,224,0.72);transition:color .3s}
 .nav-link:hover{color:var(--accent)}
 .nav-cta{padding:0.7rem 1.3rem;font-size:0.62rem}
 @media(max-width:760px){.nav-links{display:none}}
@@ -314,6 +314,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:clamp(3r
 .footer-contact-item{color:var(--muted);font-size:0.85rem;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
 .footer-contact-item svg{width:16px;height:16px;color:var(--accent);flex-shrink:0}
 .footer-bottom{max-width:1320px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);letter-spacing:0.08em}
+.footer-credit-link{color:var(--accent);transition:color .3s}
+.footer-credit-link:hover{color:var(--accent2)}
 
 /* ============================================================
    RESPONSIVE
