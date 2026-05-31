@@ -195,15 +195,15 @@ nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 .filter-btn{font-family:var(--font-body);font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;padding:0.6rem 1.2rem;border:1px solid var(--border);border-radius:var(--r-pill);color:var(--muted);background:transparent;transition:all .3s}
 .filter-btn:hover{border-color:var(--border2);color:var(--text)}
 .filter-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(255,197,0,0.06)}
-.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
-.prod-card{text-align:left;background:var(--steel-grad);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;position:relative;box-shadow:var(--shadow-sm);transition:transform .35s var(--ease),box-shadow .35s}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:1.2rem;margin-top:2rem}
+.prod-card{text-align:left;display:flex;flex-direction:column;background:var(--steel-grad);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;position:relative;box-shadow:var(--shadow-sm);transition:transform .35s var(--ease),box-shadow .35s}
 .prod-card:hover{transform:translateY(-6px);box-shadow:var(--glow-accent)}
-.prod-media{aspect-ratio:1/1;overflow:hidden;background:#0a0a0a}
-.prod-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.prod-media{flex:0 0 auto;width:100%;aspect-ratio:1/1;overflow:hidden;background:#0a0a0a}
+.prod-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
 .prod-card:hover .prod-media img{transform:scale(1.04)}
 .prod-media--fallback{display:flex;align-items:center;justify-content:center;color:var(--faint)}
 .prod-media--fallback svg{width:64px;height:64px}
-.prod-card-body{padding:1.4rem}
+.prod-card-body{flex:1 1 auto;padding:1.4rem}
 .prod-cat{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
 .prod-name{font-family:var(--font-display);font-weight:600;font-size:1.2rem;margin:0.4rem 0;line-height:1.15;color:var(--text)}
 .prod-short{color:var(--muted);font-size:0.85rem}
