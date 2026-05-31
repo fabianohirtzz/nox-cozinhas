@@ -294,10 +294,21 @@ reveal();
 ============================================================ */
 const heroVideo=document.getElementById('hero-video');
 if(heroVideo){
+  /* iOS exige muted+playsinline como propriedades p/ autoplay; src dinâmico exige load()+play() */
+  heroVideo.muted=true; heroVideo.defaultMuted=true; heroVideo.playsInline=true;
+  heroVideo.setAttribute('muted',''); heroVideo.setAttribute('playsinline','');
   heroVideo.src = window.matchMedia('(max-width: 760px)').matches
     ? 'assets/videos/video-mobile.mp4'
     : 'assets/videos/video-desktop.mp4';
-  if(REDUCE){ heroVideo.removeAttribute('autoplay'); heroVideo.addEventListener('loadeddata',()=>heroVideo.pause(),{once:true}); }
+  heroVideo.load();
+  const playHero=()=>{const p=heroVideo.play();if(p&&p.catch)p.catch(()=>{});};
+  heroVideo.addEventListener('loadeddata',playHero,{once:true});
+  heroVideo.addEventListener('canplay',playHero,{once:true});
+  playHero();
+  /* fallback iOS (modo de baixo consumo/gesto): retoma no 1º toque ou clique */
+  const kickHero=()=>playHero();
+  document.addEventListener('touchstart',kickHero,{once:true,passive:true});
+  document.addEventListener('click',kickHero,{once:true});
 }
 if(!REDUCE){
   animate('.hero-eyebrow',{opacity:[0,1],y:[20,0]},{duration:0.7,delay:0.2,ease:EASE});
