@@ -31,6 +31,27 @@ if(REDUCE){
 }
 
 /* ============================================================
+   MOBILE MENU (toggle drawer + ancoras + CTA orçamento)
+============================================================ */
+const navToggle=document.getElementById('nav-toggle');
+const mobileMenu=document.getElementById('mobile-menu');
+let menuOpen=false;
+function setMenu(open){
+  menuOpen=open;
+  mobileMenu.classList.toggle('open',open);
+  mobileMenu.setAttribute('aria-hidden',open?'false':'true');
+  navToggle.setAttribute('aria-expanded',open?'true':'false');
+  navToggle.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
+  document.body.style.overflow=open?'hidden':'auto';
+}
+if(navToggle&&mobileMenu){
+  navToggle.addEventListener('click',()=>setMenu(!menuOpen));
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menuOpen)setMenu(false);});
+  window.addEventListener('resize',()=>{if(menuOpen&&window.innerWidth>760)setMenu(false);},{passive:true});
+}
+
+/* ============================================================
    DADOS
 ============================================================ */
 const SETORES = [
