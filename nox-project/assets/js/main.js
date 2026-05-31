@@ -306,19 +306,27 @@ if(!REDUCE)press('.btn-primary',el=>{animate(el,{scale:0.96},{duration:0.12});re
    GALERIA (bento scroller + lightbox)
    Imagens reais ainda não usadas em outras seções do projeto.
 ============================================================ */
-const GALERIA = [
-  'assets/images/galery1.jpg',
-  'assets/images/sobre1.jpg',
-  'assets/images/produtos1.jpg',
-  'assets/images/galery2.jpg',
-  'assets/images/produtos.jpg',
-  'assets/images/sobre2.jpg',
-  'assets/images/galery3.jpg',
-  'assets/images/produtos2.jpg',
-  'assets/images/banner-sobre.jpg',
-  'assets/images/galery4.jpg',
-  'assets/images/galery5.jpg'
+/* Fotos de obras (pasta images) ainda não usadas em outras seções */
+const GAL_FOTOS = [
+  'assets/images/galery1.jpg','assets/images/produtos1.jpg','assets/images/galery2.jpg',
+  'assets/images/galery3.jpg','assets/images/produtos2.jpg','assets/images/galery4.jpg','assets/images/galery5.jpg'
 ];
+/* Imagens de products que NÃO são capa de card no catálogo (não aparecem na seção sem clicar).
+   Round-robin por categoria para variar, intercalando as fotos de obra. */
+const GALERIA = (()=>{
+  const buckets = [
+    Array.from({length:12},(_,i)=>`assets/products/fritadeira1-${i+2}.png`), // 2–13
+    [3,5,6,9,10].map(n=>`assets/products/mobiliario1-${n}.png`),
+    [2,3,4].map(n=>`assets/products/refrigeracao1-${n}.png`),
+    [2,3,4].map(n=>`assets/products/fogao1-${n}.png`)
+  ];
+  const pool=[]; let more=true;
+  while(more){ more=false; for(const b of buckets){ if(b.length){ pool.push(b.shift()); more=true; } } }
+  const out=[]; let fi=0;
+  pool.forEach((src,idx)=>{ out.push(src); if(idx%3===2 && fi<GAL_FOTOS.length) out.push(GAL_FOTOS[fi++]); });
+  while(fi<GAL_FOTOS.length) out.push(GAL_FOTOS[fi++]);
+  return out;
+})();
 const galTrack=document.getElementById('galeria-track');
 const PAD=n=>String(n+1).padStart(2,'0');
 const EXPAND_SVG='<span class="g-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>';
