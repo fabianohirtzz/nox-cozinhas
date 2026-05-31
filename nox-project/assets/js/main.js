@@ -393,3 +393,19 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='ArrowRight')lbShow(lbIndex+1);
   else if(e.key==='ArrowLeft')lbShow(lbIndex-1);
 });
+
+/* ============================================================
+   ACORDEÃO — Manutenção & Limpeza (Guia Inox)
+   Um item aberto por vez; expansão via CSS (grid-template-rows).
+============================================================ */
+const acc=document.getElementById('inox-accordion');
+if(acc)acc.addEventListener('click',e=>{
+  const head=e.target.closest('.acc-head'); if(!head)return;
+  const item=head.parentElement;
+  const wasOpen=item.classList.contains('open');
+  acc.querySelectorAll('.acc-item').forEach(it=>{
+    it.classList.remove('open');
+    const h=it.querySelector('.acc-head'); if(h)h.setAttribute('aria-expanded','false');
+  });
+  if(!wasOpen){item.classList.add('open');head.setAttribute('aria-expanded','true');}
+});

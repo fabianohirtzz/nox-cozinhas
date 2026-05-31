@@ -261,6 +261,28 @@ nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 .care-head-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted)}
 .care-body{font-size:0.85rem;color:var(--muted);line-height:1.6}
 .care-body strong{color:var(--text)}
+/* Guia Inox — tabela full-width + bloco de manutenção (acordeão) */
+.inox-table-wrap{margin-top:2.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.inox-table-wrap .inox-table{min-width:640px}
+.inox-care{margin-top:clamp(3rem,6vw,5rem);padding-top:clamp(2.5rem,5vw,4rem);border-top:1px solid var(--border)}
+.inox-care-head{max-width:640px;margin-bottom:clamp(1.8rem,3vw,2.5rem)}
+.inox-care-title{font-size:clamp(1.8rem,4vw,3rem);line-height:1;margin:0.8rem 0 0.4rem}
+.accordion{display:flex;flex-direction:column;gap:0.8rem;max-width:920px}
+.acc-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;transition:background .35s var(--ease),border-color .35s}
+.acc-item.open{background:var(--bg3);border-color:var(--border2)}
+.acc-head{width:100%;display:flex;align-items:center;gap:0.9rem;padding:1.15rem 1.4rem;text-align:left}
+.acc-head .care-dot{width:8px;height:8px}
+.acc-label{flex:1;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);transition:color .3s}
+.acc-item.open .acc-label{color:var(--accent)}
+.acc-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:transform .45s var(--ease),border-color .3s,color .3s}
+.acc-icon svg{width:14px;height:14px}
+.acc-item.open .acc-icon{transform:rotate(180deg);border-color:var(--accent);color:var(--accent)}
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.acc-item.open .acc-body{grid-template-rows:1fr}
+.acc-body-inner{overflow:hidden;min-height:0}
+.acc-body p{padding:0 1.4rem 1.3rem 3.3rem;color:var(--muted);font-size:0.9rem;line-height:1.7}
+.acc-body p strong{color:var(--text)}
+@media(max-width:680px){.acc-body p{padding-left:1.4rem}}
 
 /* ============================================================
    CTA STRIP (over image)
