@@ -126,6 +126,35 @@
   </div>
 </section>
 
+<!-- PROJETO CAD 3D -->
+<section class="section section--dark" id="projeto-cad">
+  <div class="container">
+    <div class="cad-head" data-reveal="40">
+      <div>
+        <div class="section-label">Engenharia antes da fabricação</div>
+        <h2 class="section-title">Projeto em <span class="accent-word">CAD 3D</span></h2>
+      </div>
+      <p class="section-sub">Antes de cortar a primeira chapa, modelamos toda a cozinha em CAD 3D — com cotas reais em milímetros, encaixes e fluxo de trabalho aprovados por você. Nada é fabricado sem o desenho assinado.</p>
+    </div>
+    <div class="cad-grid" data-reveal="40">
+      <figure class="cad-frame">
+        <img src="assets/images/project1.jpeg" alt="Projeto NOX em CAD 3D de cozinha industrial em perspectiva, com cotas em milímetros" loading="lazy" width="1170" height="780">
+        <figcaption class="cad-tag">01 / Perspectiva · cotas em mm</figcaption>
+      </figure>
+      <figure class="cad-frame">
+        <img src="assets/images/project2.jpeg" alt="Projeto NOX em CAD 3D de cozinha industrial em vista de elevação, com cotas em milímetros" loading="lazy" width="1170" height="780">
+        <figcaption class="cad-tag">02 / Elevação · cotas em mm</figcaption>
+      </figure>
+    </div>
+    <div class="cad-specs" data-reveal="40">
+      <div class="cad-spec"><span class="cad-spec-k">Modelagem</span><span class="cad-spec-v">CAD 3D cotado</span></div>
+      <div class="cad-spec"><span class="cad-spec-k">Aprovação</span><span class="cad-spec-v">Desenho assinado</span></div>
+      <div class="cad-spec"><span class="cad-spec-k">Precisão</span><span class="cad-spec-v">Cotas em mm</span></div>
+      <div class="cad-spec"><span class="cad-spec-k">Retorno</span><span class="cad-spec-v">Até 24h úteis</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- PRODUTOS -->
 <section class="section section--alt" id="produtos">
   <div class="container">
@@ -344,17 +373,19 @@
       <div class="form-box">
         <div class="form-box-title">Formulário de orçamento</div>
         <div class="form-box-sub">Retorno em até 24 horas úteis</div>
-        <form id="quote-form">
+        <form id="quote-form" action="enviar.php" method="post" novalidate>
+          <!-- honeypot anti-spam — humanos não veem; não preencher -->
+          <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-two-col">
-            <div class="form-group"><label class="form-label">Nome completo</label><input type="text" class="form-input" placeholder="Seu nome completo"></div>
-            <div class="form-group"><label class="form-label">Empresa / Estabelecimento</label><input type="text" class="form-input" placeholder="Nome da empresa"></div>
+            <div class="form-group"><label class="form-label" for="f-nome">Nome completo</label><input type="text" id="f-nome" name="nome" class="form-input" placeholder="Seu nome completo" required></div>
+            <div class="form-group"><label class="form-label" for="f-empresa">Empresa / Estabelecimento</label><input type="text" id="f-empresa" name="empresa" class="form-input" placeholder="Nome da empresa"></div>
           </div>
           <div class="form-two-col">
-            <div class="form-group"><label class="form-label">Telefone / WhatsApp</label><input type="tel" class="form-input" placeholder="(51) 9 9999-9999"></div>
-            <div class="form-group"><label class="form-label">E-mail</label><input type="email" class="form-input" placeholder="contato@empresa.com"></div>
+            <div class="form-group"><label class="form-label" for="f-telefone">Telefone / WhatsApp</label><input type="tel" id="f-telefone" name="telefone" class="form-input" placeholder="(51) 9 9999-9999" required></div>
+            <div class="form-group"><label class="form-label" for="f-email">E-mail</label><input type="email" id="f-email" name="email" class="form-input" placeholder="contato@empresa.com"></div>
           </div>
-          <div class="form-group"><label class="form-label">Setor de atuação</label>
-            <select class="form-input">
+          <div class="form-group"><label class="form-label" for="f-setor">Setor de atuação</label>
+            <select id="f-setor" name="setor" class="form-input">
               <option value="">Selecione o setor</option>
               <option>Padaria / Confeitaria</option>
               <option>Restaurante / Bar / Lanchonete</option>
@@ -365,8 +396,8 @@
               <option>Outro</option>
             </select>
           </div>
-          <div class="form-group"><label class="form-label">Produto ou projeto de interesse</label>
-            <select class="form-input">
+          <div class="form-group"><label class="form-label" for="f-produto">Produto ou projeto de interesse</label>
+            <select id="f-produto" name="produto" class="form-input">
               <option value="">Selecione o produto</option>
               <option>Fritadeiras Industriais</option>
               <option>Fogões Industriais</option>
@@ -381,9 +412,11 @@
               <option>Projeto Completo Sob Medida</option>
             </select>
           </div>
-          <div class="form-group"><label class="form-label">Cidade / Estado</label><input type="text" class="form-input" placeholder="Ex: Porto Alegre / RS"></div>
-          <div class="form-group"><label class="form-label">Descrição do projeto</label><textarea class="form-input" placeholder="Descreva suas necessidades, dimensões aproximadas, quantidade, particularidades do espaço..."></textarea></div>
-          <button class="form-submit" type="button" id="quote-submit">Enviar Solicitação de Orçamento →</button>
+          <div class="form-group"><label class="form-label" for="f-cidade">Cidade / Estado</label><input type="text" id="f-cidade" name="cidade" class="form-input" placeholder="Ex: Porto Alegre / RS"></div>
+          <div class="form-group"><label class="form-label" for="f-descricao">Descrição do projeto</label><textarea id="f-descricao" name="descricao" class="form-input" placeholder="Descreva suas necessidades, dimensões aproximadas, quantidade, particularidades do espaço..."></textarea></div>
+          <button class="form-submit" type="submit" id="quote-submit">Enviar Solicitação de Orçamento →</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <a class="btn-outline form-fallback" id="quote-fallback" target="_blank" rel="noopener">Enviar pelo WhatsApp →</a>
         </form>
       </div>
     </div>
@@ -428,6 +461,7 @@
     <div>
       <div class="footer-col-title">Contato</div>
       <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Alvorada, Rio Grande do Sul</div>
+      <a class="footer-contact-item footer-contact-link" href="mailto:contato@noxcozinhas.com.br"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>contato@noxcozinhas.com.br</a>
       <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Segunda a Sexta — 08h às 18h</div>
       <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6 2.7 2.7 6-6a4 4 0 0 0 5.4-5.4l-2.4 2.4-2-2z"/></svg>Assistência Técnica Permanente</div>
       <a href="#quote" class="btn-primary" style="margin-top:1.2rem">Solicitar Orçamento →</a>

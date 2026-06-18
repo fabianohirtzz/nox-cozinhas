@@ -137,17 +137,47 @@ const PRODUTOS = [
     features:['Ternos para churrasqueiras com exaustão integrada sob medida','Portas de gabinetes que resistem à salinidade e umidade externa','Mesas de buffet com pista fria ou quente integradas eletricamente','Bancadas integradas de grande extensão ideais para recepções','Instalados em condomínios renomados (ex: Piratini/RS)'],
     specs:{Material:'Aço Inox AISI 304 de extrema resistência à oxidação',Garantia:'6 meses na estrutura geral e juntas de soldadura',Dimensões:'Adequado ao layout da área gourmet',Acabamento:'Inox Escovado acetinado à prova de manchas'},
     options:[{label:'Área',values:['Salão de Festas (Interna)','Churrasqueira / Quiosque (Semicoberta)','Lavanderia de Uso Comum']},{label:'Painel Estético',values:['Minimalista Prata Clássico','Contraste com Acabamento Preto']}]
+  },
+  { id:'exaustores', cat:'Exaustão', pop:false, name:'Exaustores Industriais Axiais e Centrífugos', short:'Motores de exaustão de alta vazão para dutos e sistemas de coifa.',
+    features:['Modelo axial para grandes volumes de ar com baixa pressão estática','Modelo centrífugo (caracol) para alta pressão em dutos longos e tortuosos','Rotor balanceado dinamicamente para operação silenciosa e sem vibração','Carcaça e voluta resistentes a vapores gordurosos e corrosão','Motor elétrico blindado IP55 para uso industrial contínuo'],
+    specs:{Material:'Aço Inox AISI 430 / chapa tratada conforme aplicação',Garantia:'6 meses contra defeitos de fabricação',Vazão:'Até 8.000 m³/h conforme diâmetro e rotação',Motor:'0,5 CV a 5 CV — 220V/380V trifásico',Acionamento:'Direto ou por polias e correias',Acabamento:'Pintura epóxi ou inox escovado'},
+    options:[{label:'Tipo de Exaustor',values:['Axial (Alta Vazão)','Centrífugo (Alta Pressão)']},{label:'Acionamento',values:['Motor Direto','Polias e Correias']},{label:'Tensão',values:['220V Monofásico','220V/380V Trifásico']}]
+  },
+  { id:'suqueira', cat:'Refrigeração', pop:false, name:'Suqueira Industrial Refrigerada', short:'Reservatórios refrigerados em inox para sucos, refrescos e água gelada.',
+    features:['Reservatórios refrigerados em inox para sucos, refrescos e água gelada','Torneiras frontais de fácil acionamento com bandeja coletora removível','Refrigeração por serpentina com termostato de temperatura regulável','Recirculação opcional que mantém o suco homogêneo e na temperatura','Rodízios com freio para deslocamento em buffets e refeitórios'],
+    specs:{Material:'Aço Inox AISI 304 sanitário (interno e externo)',Garantia:'6 meses + garantia de componentes e gás refrigerante',Capacidade:'2 a 4 reservatórios de 25 a 50 litros cada',Temperatura:'Bebida gelada entre 2°C e 8°C',Consumo:'Compressor 1/6 HP a 1/4 HP (220V)',Acabamento:'Inox escovado de fácil higienização'},
+    options:[{label:'Número de Torneiras',values:['2 Torneiras','3 Torneiras','4 Torneiras']},{label:'Mobilidade',values:['Pés Fixos Niveladores','Rodízios com Freio']}]
+  },
+  { id:'chopp', cat:'Refrigeração', pop:false, name:'Refrigerador para Barril de Chopp', short:'Bancada refrigerada para barris (KEGs) e tiragem de chopp na temperatura ideal.',
+    features:['Câmara refrigerada dimensionada para barris KEG de 30L e 50L','Isolamento em poliuretano injetado de 50mm contra perda térmica','Coluna e serpentina geladas para tiragem do chopp na temperatura ideal','Portas com vedação magnética reforçada e dobradiças de inox','Controlador digital microprocessado de fácil leitura'],
+    specs:{Material:'Aço Inox AISI 304 (externo e interno)',Garantia:'6 meses + garantia de compressor e gás',Capacidade:'2 a 4 barris KEG conforme comprimento',Temperatura:'Chopp servido entre 0°C e 4°C',Consumo:'Compressor 1/4 HP a 1/2 HP (220V)',Acabamento:'Inox escovado antimarcas de dedos'},
+    options:[{label:'Capacidade',values:['2 Barris','3 Barris','4 Barris Sob Medida']},{label:'Tiragem',values:['Sem Coluna','Com Coluna de Chopp Integrada']}]
+  },
+  { id:'chefbase', cat:'Refrigeração', pop:false, name:'Refrigerador com Apoio para Cocção (Chef Base)', short:'Base refrigerada de baixa altura para apoiar chapas, charbroilers e fogões.',
+    features:['Tampo reforçado preparado para receber equipamentos de cocção pesados','Gavetas refrigeradas para cubas Gastronorm (GN) ao alcance do cozinheiro','Isolamento em poliuretano injetado de 50mm de alta eficiência','Espelho traseiro que protege a parede de respingos e do calor','Estrutura baixa ergonômica que mantém o mise en place sob a linha de fogo'],
+    specs:{Material:'Aço Inox AISI 304 sanitário',Garantia:'6 meses + garantia de componentes e freon',Comprimentos:'1500mm, 2000mm ou sob medida',Temperatura:'Câmara refrigerada de −2°C a +8°C',Capacidade:'4 a 6 gavetas GN refrigeradas',Acabamento:'Inox escovado antimarcas de dedos'},
+    options:[{label:'Configuração',values:['4 Gavetas GN','6 Gavetas GN','Gavetas + Portas']},{label:'Tampo',values:['Liso Reforçado','Com Espelho Traseiro']}]
+  },
+  { id:'lixeiras', cat:'Mobiliário', pop:false, name:'Lixeiras e Coletores Industriais', short:'Coletores cilíndricos em inox com tampa e pedal para descarte higiênico.',
+    features:['Corpo cilíndrico em inox com solda contínua e sem frestas','Acionamento por pedal para abertura da tampa sem contato manual','Rodízios para deslocamento fácil durante a higienização da cozinha','Tampa com batente silencioso e alças laterais reforçadas','Superfície lisa que não acumula resíduos e resiste a desinfetantes'],
+    specs:{Material:'Aço Inox AISI 304 sanitário',Garantia:'6 meses',Capacidade:'20, 50 ou 100 litros',Acionamento:'Pedal mecânico com haste reforçada',Acabamento:'Inox escovado Scotch-Brite'},
+    options:[{label:'Capacidade',values:['20 Litros','50 Litros','100 Litros']},{label:'Mobilidade',values:['Com Pedal e Rodízios','Fixa com Pedal']}]
   }
 ];
 
 /* galerias reais (fundo inox) — anexa hero + gallery aos produtos fotografados */
 const GAL = {
-  fritadeiras:  Array.from({length:13},(_,i)=>`assets/products/fritadeira1-${i+1}.png`),
-  fogoes:       Array.from({length:4}, (_,i)=>`assets/products/fogao1-${i+1}.png`),
+  fritadeiras:  Array.from({length:18},(_,i)=>`assets/products/fritadeira1-${i+1}.png`),
+  fogoes:       Array.from({length:5}, (_,i)=>`assets/products/fogao1-${i+1}.png`),
   refrigerador: Array.from({length:4}, (_,i)=>`assets/products/refrigeracao1-${i+1}.png`),
   moveis:       Array.from({length:10},(_,i)=>`assets/products/mobiliario1-${i+1}.png`),
-  mesas_drink:  ['assets/products/mobiliario1-2.png'],
+  mesas_drink:  ['assets/products/mesa-drink1.png','assets/products/mesa-drink2.png'],
   coifas:       ['assets/products/exaustao-1.png'],
+  exaustores:   ['assets/products/exaustor-centrifugo.png','assets/products/exaustor-axial.png'],
+  suqueira:     ['assets/products/suqueira-industrial.png'],
+  chopp:        ['assets/products/refigerador-barril-de-chopp.png'],
+  chefbase:     ['assets/products/refrigerador-com-apoio-coccao.png'],
+  lixeiras:     ['assets/products/lixeira-industrial.png'],
   panificacao:  ['assets/products/mobiliario1-4.png'],
   processamento:['assets/products/mobiliario1-8.png'],
   hospitais:    ['assets/products/mobiliario1-7.png'],
@@ -263,14 +293,56 @@ document.getElementById('produtos').addEventListener('click',e=>{
 renderProds('all');
 
 /* ============================================================
-   FORM
+   FORM — envia o orçamento para enviar.php (PHP na erehost).
+   Fallback: se o PHP não estiver ativo (ex.: GitHub Pages), abre o
+   WhatsApp já com os dados preenchidos para não perder o lead.
 ============================================================ */
+const quoteForm=document.getElementById('quote-form');
 const qs=document.getElementById('quote-submit');
-if(qs)qs.addEventListener('click',()=>{
+const formStatus=document.getElementById('form-status');
+const formFallback=document.getElementById('quote-fallback');
+const WA_PHONE='5551986175144';
+function setStatus(msg,kind){if(!formStatus)return;formStatus.textContent=msg||'';formStatus.className='form-status'+(kind?' form-status--'+kind:'');}
+function resumoLead(fd){
+  const L=[['nome','Nome'],['empresa','Empresa'],['telefone','Telefone'],['email','E-mail'],['setor','Setor'],['produto','Produto/Projeto'],['cidade','Cidade/UF'],['descricao','Descrição']];
+  return L.map(([k,t])=>{const v=(fd.get(k)||'').toString().trim();return v?`${t}: ${v}`:null;}).filter(Boolean).join('\n');
+}
+function abreWhatsAppFallback(fd){
+  if(!formFallback)return;
+  const txt=encodeURIComponent('Olá! Gostaria de solicitar um orçamento.\n\n'+resumoLead(fd));
+  formFallback.href=`https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${txt}`;
+  formFallback.style.display='inline-flex';
+}
+function formSucesso(){
   qs.textContent='✓ Solicitação enviada — retorno em até 24h';
   qs.style.background='var(--bg4)';qs.style.color='var(--accent)';qs.style.border='1px solid var(--accent)';qs.disabled=true;
+  if(formFallback)formFallback.style.display='none';
+  setStatus('Recebemos seu pedido! Em breve nossa equipe entra em contato.','ok');
   if(!REDUCE)animate(qs,{scale:[0.98,1]},{type:'spring',visualDuration:0.3,bounce:0.2});
-});
+}
+if(quoteForm&&qs){
+  quoteForm.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const fd=new FormData(quoteForm);
+    if((fd.get('_gotcha')||'').toString().trim())return; // honeypot: robô
+    const nome=(fd.get('nome')||'').toString().trim();
+    const email=(fd.get('email')||'').toString().trim();
+    const tel=(fd.get('telefone')||'').toString().trim();
+    if(!nome||(!email&&!tel)){setStatus('Preencha ao menos o nome e um contato (telefone ou e-mail).','err');return;}
+    const original=qs.textContent;qs.disabled=true;qs.textContent='Enviando…';setStatus('');
+    if(formFallback)formFallback.style.display='none';
+    try{
+      const r=await fetch('enviar.php',{method:'POST',body:fd,headers:{'Accept':'application/json'}});
+      let data=null;try{data=await r.json();}catch(_){}
+      if(r.ok&&data&&data.ok){formSucesso();return;}
+      throw new Error((data&&data.error)||'falha no envio');
+    }catch(err){
+      qs.disabled=false;qs.textContent=original;
+      setStatus('Não foi possível enviar pelo site agora. Você pode falar direto pelo WhatsApp:','err');
+      abreWhatsAppFallback(fd);
+    }
+  });
+}
 
 /* ============================================================
    REVEAL + STAGGER (Motion)

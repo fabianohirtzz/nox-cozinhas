@@ -180,6 +180,21 @@ nav.scrolled .nav-inner{background:rgba(7,7,7,0.92);border-color:var(--border2)}
 .metric-n{font-family:var(--font-display);font-weight:600;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1}
 .metric-l{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.6rem}
 
+/* PROJETO CAD 3D */
+.cad-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:end;margin-bottom:2.2rem}
+.cad-head .section-sub{margin-top:0}
+.cad-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+.cad-frame{position:relative;margin:0;background:#0a0a0a;overflow:hidden}
+.cad-frame img{display:block;width:100%;height:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .6s var(--ease)}
+.cad-frame:hover img{transform:scale(1.03)}
+.cad-tag{position:absolute;left:1rem;bottom:1rem;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);background:rgba(7,7,7,0.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:var(--r-pill);padding:0.35rem 0.8rem}
+.cad-specs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-top:1.5rem}
+.cad-spec{background:var(--steel-grad);padding:1.1rem 1.3rem;display:flex;flex-direction:column;gap:0.35rem}
+.cad-spec-k{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.cad-spec-v{font-size:0.9rem;color:var(--text);font-weight:500}
+@media(max-width:880px){.cad-head{grid-template-columns:1fr}.cad-grid{grid-template-columns:1fr}}
+@media(max-width:680px){.cad-specs{grid-template-columns:1fr 1fr}}
+
 /* ============================================================
    MANIFESTO (over image)
 ============================================================ */
@@ -352,6 +367,14 @@ textarea.form-input{min-height:120px;resize:vertical}
 .form-submit{width:100%;margin-top:1rem;border:none;border-radius:var(--r-pill);background:var(--accent);color:#0a0a0a;font-weight:600;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;padding:1.1rem;transition:all .3s var(--ease)}
 .form-submit:hover{background:var(--accent2);box-shadow:0 8px 24px rgba(255,197,0,0.35)}
 .form-submit:disabled{cursor:default}
+/* honeypot anti-spam — escondido de humanos sem usar display:none */
+.hp-field{position:absolute!important;left:-9999px!important;top:auto;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+/* mensagem de status do envio */
+.form-status{margin-top:0.9rem;font-size:0.82rem;line-height:1.5;min-height:1px}
+.form-status--ok{color:var(--accent)}
+.form-status--err{color:#e6b4ae}
+/* botão de fallback (WhatsApp) — escondido até precisar */
+.form-fallback{display:none;margin-top:0.8rem;width:100%;justify-content:center}
 
 /* ============================================================
    FOOTER
@@ -368,6 +391,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:clamp(3r
 .footer-links a:hover{color:var(--accent)}
 .footer-contact-item{color:var(--muted);font-size:0.85rem;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
 .footer-contact-item svg{width:16px;height:16px;color:var(--accent);flex-shrink:0}
+a.footer-contact-link{transition:color .3s}
+a.footer-contact-link:hover{color:var(--accent)}
 .footer-bottom{max-width:1320px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);letter-spacing:0.08em}
 .footer-credit-link{color:var(--accent);transition:color .3s}
 .footer-credit-link:hover{color:var(--accent2)}
