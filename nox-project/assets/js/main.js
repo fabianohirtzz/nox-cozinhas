@@ -109,7 +109,7 @@ const PRODUTOS = [
     options:[{label:'Configuração de Cubas',values:['1 Cuba com Lavador de Copos','2 Cubas Separadas','Cuba + Cuba de Expurgo']},{label:'Trilho de Garrafas',values:['Trilho Simples (6 Garrafas)','Trilho Duplo (12 Garrafas)']}]
   },
   { id:'coifas', cat:'Exaustão', pop:false, name:'Coifas Industriais Sob Medida', short:'Sistemas completos de exaustão e lavagem de gases residuais.',
-    features:['Modelos de parede ou de centro (Ilha) com fixação rígida','Filtros colmeia ou labirinto de inox totalmente laváveis','Calha coletora de gordura ao longo de toda a borda com dreno','Furação para saída e encaixe de dutos sob medida','Iluminação embutida vedada a prova de vapor e calor (opcional)'],
+    features:['Modelos de parede ou de centro (Ilha) com fixação rígida','Sistema de lavagem de gases (lavador) que neutraliza fumaça, gordura e odores antes da saída','Filtros colmeia ou labirinto de inox totalmente laváveis','Calha coletora de gordura ao longo de toda a borda com dreno','Furação para saída e encaixe de dutos sob medida','Iluminação embutida vedada a prova de vapor e calor (opcional)'],
     specs:{Material:'Aço Inox AISI 304 ou AISI 430 de alta resistência a vapores',Garantia:'6 meses contra defeitos de solda ou flexão',Dimensões:'Largura e comprimento conforme bloco de fogões',Exaustão:'Até 2500m³/hora por metro linear de coifa',Acabamento:'Juntas invisíveis e polimento de luxo'},
     options:[{label:'Formato',values:['Parede','Central em Ilha','Caixa Retangular']},{label:'Filtros',values:['Labirinto Inox (Recomendado)','Alumínio Descartável']},{label:'Iluminação',values:['Com LED Integrado','Sem Iluminação']}]
   },
@@ -172,7 +172,7 @@ const GAL = {
   refrigerador: Array.from({length:4}, (_,i)=>`assets/products/refrigeracao1-${i+1}.png`),
   moveis:       Array.from({length:10},(_,i)=>`assets/products/mobiliario1-${i+1}.png`),
   mesas_drink:  ['assets/products/mesa-drink1.png','assets/products/mesa-drink2.png'],
-  coifas:       ['assets/products/exaustao-1.png'],
+  coifas:       ['assets/products/exaustao-1.png','assets/products/coifa-com-lavagem-de-gases.png'],
   exaustores:   ['assets/products/exaustor-centrifugo.png','assets/products/exaustor-axial.png'],
   suqueira:     ['assets/products/suqueira-industrial.png'],
   chopp:        ['assets/products/refigerador-barril-de-chopp.png'],
@@ -313,11 +313,14 @@ function abreWhatsAppFallback(fd){
   formFallback.href=`https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${txt}`;
   formFallback.style.display='inline-flex';
 }
+/* Dispara evento GA4 com segurança (não quebra se o gtag for bloqueado por adblock). */
+function track(evento,params){try{if(typeof gtag==='function')gtag('event',evento,params||{});}catch(_){}}
 function formSucesso(){
   qs.textContent='✓ Solicitação enviada — retorno em até 24h';
   qs.style.background='var(--bg4)';qs.style.color='var(--accent)';qs.style.border='1px solid var(--accent)';qs.disabled=true;
   if(formFallback)formFallback.style.display='none';
   setStatus('Recebemos seu pedido! Em breve nossa equipe entra em contato.','ok');
+  track('generate_lead',{form:'orcamento',metodo:'site'}); // conversão principal (importar no Ads)
   if(!REDUCE)animate(qs,{scale:[0.98,1]},{type:'spring',visualDuration:0.3,bounce:0.2});
 }
 if(quoteForm&&qs){
@@ -343,6 +346,15 @@ if(quoteForm&&qs){
     }
   });
 }
+
+/* WhatsApp como conversão: captura clique em qualquer link de WhatsApp (flutuante, fallback do form, etc.) */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href*="wa.me"],a[href*="whatsapp.com"]');
+  if(!a)return;
+  const origem=a.classList.contains('wa-float')?'botao-flutuante'
+    :a.id==='quote-fallback'?'fallback-form':'link';
+  track('whatsapp_click',{origem});
+},true);
 
 /* ============================================================
    REVEAL + STAGGER (Motion)

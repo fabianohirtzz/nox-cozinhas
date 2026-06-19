@@ -1,0 +1,40 @@
+name: Deploy to erehost (FTP)
+
+# Publica o site na hospedagem erehost (cPanel) automaticamente.
+# Dispara a cada push na main que altere o site, ou manualmente em Actions.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'nox-project/**'
+      - '.github/workflows/deploy-erehost.yml'
+  workflow_dispatch:
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}        # ex.: ftp.noxcozinhas.com.br
+          username: ${{ secrets.FTP_USER }}      # usuário FTP do cPanel
+          password: ${{ secrets.FTP_PASS }}      # senha do FTP
+          protocol: ftps                          # FTP seguro (porta 21 explícita). Se falhar, troque para: ftp
+          port: 21
+          # A conta FTP de deploy é escopada para public_html (Diretório = public_html
+          # no cPanel), então ela já abre na raiz pública: server-dir = ./
+          local-dir: ./nox-project/
+          server-dir: ./
+          dangerous-clean-slate: false           # NUNCA apaga o servidor inteiro; envia só o que mudou
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/*.md
+            **/config.local.php
+            **/config.local.example.php
+            **/.ftp-deploy-sync-state.json
