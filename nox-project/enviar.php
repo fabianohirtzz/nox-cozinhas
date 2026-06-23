@@ -26,6 +26,11 @@ $SMTP_PASS   = 'COLOQUE_AQUI_A_SENHA_DO_EMAIL';// senha da conta de e-mail
 $DESTINO   = 'contato@noxcozinhas.com.br';     // para onde o lead chega
 $REMETENTE = 'contato@noxcozinhas.com.br';     // "De" — precisa ser a conta autenticada
 $NOME_SITE = 'Site NOX Cozinhas';              // nome exibido como remetente
+
+// Supabase (CRM/painel de leads). A SERVICE ROLE key é segredo:
+// deixe vazia aqui e defina o valor real no config.local.php (no servidor).
+$SUPABASE_URL         = 'https://SEU-PROJETO.supabase.co';  // Project URL (mesmo projeto do hd360)
+$SUPABASE_SERVICE_KEY = '';                                 // service_role key — NUNCA versionar
 // -----------------------------------------------------------------
 
 // Credenciais sensíveis vêm de um arquivo que existe SÓ no servidor:
@@ -97,6 +102,56 @@ $corpo .= "------------------------------------------\n";
 $corpo .= "Enviado em " . date('d/m/Y') . " as " . date('H:i') . "\n";
 
 $assunto = 'Orçamento NOX' . ($produto !== '' ? " — $produto" : '') . " — $nome";
+
+/* ------------------------------------------------------------
+   Grava o lead no Supabase (painel de leads). Usa a service_role
+   key — que ignora o RLS por design. Roda ANTES do e-mail para
+   nunca perder o lead, e não bloqueia o envio se falhar.
+------------------------------------------------------------ */
+function salvarSupabase($url, $key, array $dados) {
+    if ($url === '' || $key === '' || strpos($url, 'SEU-PROJETO') !== false || !function_exists('curl_init')) {
+        return;
+    }
+    $ch = curl_init(rtrim($url, '/') . '/rest/v1/leads');
+    curl_setopt_array($ch, [
+        CURLOPT_POST           => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 8,
+        CURLOPT_HTTPHEADER     => [
+            'apikey: ' . $key,
+            'Authorization: Bearer ' . $key,
+            'Content-Type: application/json',
+            'Prefer: return=minimal',
+        ],
+        CURLOPT_POSTFIELDS     => json_encode($dados, JSON_UNESCAPED_UNICODE),
+    ]);
+    $resp = curl_exec($ch);
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if ($resp === false || $code < 200 || $code >= 300) {
+        error_log('NOX Supabase insert falhou (' . $code . '): ' . $resp);
+    }
+    curl_close($ch);
+}
+
+salvarSupabase($SUPABASE_URL, $SUPABASE_SERVICE_KEY, [
+    'nome'         => $nome,
+    'empresa'      => $empresa,
+    'telefone'     => $telefone,
+    'email'        => $email,
+    'setor'        => $setor,
+    'produto'      => $produto,
+    'cidade'       => $cidade,
+    'descricao'    => $descricao,
+    'origem'       => campo('origem'),
+    'utm_source'   => campo('utm_source'),
+    'utm_medium'   => campo('utm_medium'),
+    'utm_campaign' => campo('utm_campaign'),
+    'utm_term'     => campo('utm_term'),
+    'utm_content'  => campo('utm_content'),
+    'gclid'        => campo('gclid'),
+    'referrer'     => campo('referrer'),
+    'landing_page' => campo('landing_page'),
+]);
 
 $mail = new PHPMailer(true);
 try {

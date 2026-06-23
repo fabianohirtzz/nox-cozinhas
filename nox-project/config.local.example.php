@@ -11,3 +11,9 @@
 ============================================================ */
 
 $SMTP_PASS = 'COLOQUE_AQUI_A_SENHA_DO_EMAIL';
+
+// CRM / painel de leads — grava cada lead no Supabase.
+// A service_role key é um SEGREDO (acesso total ao banco): só aqui, nunca no Git.
+// Supabase → Project Settings → API → Project URL e "service_role" secret.
+$SUPABASE_URL         = 'https://SEU-PROJETO.supabase.co';
+$SUPABASE_SERVICE_KEY = 'COLOQUE_AQUI_A_SERVICE_ROLE_KEY';

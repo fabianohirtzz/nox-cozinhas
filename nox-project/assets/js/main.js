@@ -3,6 +3,47 @@ import { animate, scroll, inView, stagger, hover, press } from "https://cdn.jsde
 const REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const EASE = [0.16, 1, 0.3, 1];
 
+/* ============================================================
+   ATRIBUIÇÃO — de onde o lead veio (pago/orgânico/social/direto).
+   Guarda em localStorage e injeta no formulário como dados ocultos.
+   Regra: um toque pago (gclid / utm cpc) sempre vence; fora isso,
+   mantém o primeiro toque e não rebaixa um pago anterior.
+============================================================ */
+const NOX_ATTR_KEY = 'nox_attribution';
+function _host(u){try{return new URL(u).hostname.replace(/^www\./,'');}catch(_){return '';}}
+function _detectOrigem(p, ref){
+  const med=(p.utm_medium||'').toLowerCase(), src=(p.utm_source||'').toLowerCase();
+  if(p.gclid||p.gad_source||['cpc','ppc','paid','paidsearch'].includes(med)) return 'pago';
+  const social=['instagram','facebook','fb.','linkedin','t.co','twitter','x.com','youtube','tiktok'];
+  if(med.includes('social')||social.some(s=>src.includes(s)||_host(ref).includes(s))) return 'social';
+  const search=['google','bing','yahoo','duckduckgo','ecosia'];
+  if(med==='organic'||search.some(s=>_host(ref).includes(s))) return 'organico';
+  if(!ref) return 'direto';
+  return 'organico';
+}
+function captureAttribution(){
+  const url=new URL(location.href), p={};
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gad_source']
+    .forEach(k=>{const v=url.searchParams.get(k);if(v)p[k]=v;});
+  const ref=document.referrer||'', origem=_detectOrigem(p,ref), hasParams=Object.keys(p).length>0;
+  let stored=null; try{stored=JSON.parse(localStorage.getItem(NOX_ATTR_KEY));}catch(_){}
+  let store=false;
+  if(!stored) store=true;
+  else if(origem==='pago') store=true;                          // pago sempre vence
+  else if(hasParams && stored.origem!=='pago') store=true;      // novo utm, sem rebaixar pago anterior
+  if(!store) return;
+  try{localStorage.setItem(NOX_ATTR_KEY, JSON.stringify({
+    origem, utm_source:p.utm_source||'', utm_medium:p.utm_medium||'', utm_campaign:p.utm_campaign||'',
+    utm_term:p.utm_term||'', utm_content:p.utm_content||'', gclid:p.gclid||'',
+    referrer:ref, landing_page:location.pathname+location.search, ts:Date.now()
+  }));}catch(_){}
+}
+function getAttribution(){
+  let s=null; try{s=JSON.parse(localStorage.getItem(NOX_ATTR_KEY));}catch(_){}
+  return s||{origem:'direto',utm_source:'',utm_medium:'',utm_campaign:'',utm_term:'',utm_content:'',gclid:'',referrer:document.referrer||'',landing_page:location.pathname};
+}
+captureAttribution();
+
 /* CURSOR */
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
@@ -328,6 +369,8 @@ if(quoteForm&&qs){
     e.preventDefault();
     const fd=new FormData(quoteForm);
     if((fd.get('_gotcha')||'').toString().trim())return; // honeypot: robô
+    const attr=getAttribution(); // anexa origem/UTM/gclid para gravar no CRM
+    Object.entries(attr).forEach(([k,v])=>{if(k!=='ts')fd.append(k,v);});
     const nome=(fd.get('nome')||'').toString().trim();
     const email=(fd.get('email')||'').toString().trim();
     const tel=(fd.get('telefone')||'').toString().trim();
