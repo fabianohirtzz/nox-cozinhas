@@ -27,8 +27,7 @@ button{cursor:pointer;border:none;background:none}
 .login{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--ink);background-image:radial-gradient(circle at 20% 20%,#1f1f22 0,var(--ink) 60%)}
 .login.hidden{display:none}
 .login-card{width:min(380px,90vw);background:var(--ink2);border:1px solid #2c2c30;padding:42px 38px;box-shadow:var(--shadow-pop)}
-.login-logo{font-family:var(--font-display);font-weight:900;font-size:2.3rem;letter-spacing:-.01em;color:#fff;line-height:1}
-.login-logo b{color:var(--accent);font-weight:400}
+.login-logo{display:block;width:168px;height:auto}
 .login-sub{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin:6px 0 30px;display:flex;align-items:center;gap:.6rem}
 .login-sub::before{content:'';width:26px;height:1px;background:var(--accent)}
 .login label{display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#8a8a90;margin:0 0 7px}
@@ -46,8 +45,7 @@ button{cursor:pointer;border:none;background:none}
 
 /* sidebar */
 .side{background:var(--ink);color:#d4d4d8;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
-.side-logo{font-family:var(--font-display);font-weight:900;font-size:1.7rem;letter-spacing:-.01em;color:#fff;padding:22px 24px 4px;line-height:1}
-.side-logo b{color:var(--accent);font-weight:400}
+.side-logo{display:block;width:150px;height:auto;box-sizing:content-box;padding:22px 24px 6px}
 .side-tag{font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:var(--orange);padding:0 24px 26px}
 .nav{display:flex;flex-direction:column;gap:2px;padding:0 12px}
 .nav-item{display:flex;align-items:center;gap:12px;padding:12px 14px;color:#a1a1aa;font-size:.82rem;letter-spacing:.02em;text-align:left;border-left:2px solid transparent;transition:.18s;width:100%}

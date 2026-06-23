@@ -382,6 +382,7 @@ textarea.form-input{min-height:120px;resize:vertical}
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:clamp(3rem,7vw,5rem) clamp(1.5rem,5vw,5rem) 2rem}
 .footer-grid{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2rem}
 .footer-brand-name{font-family:var(--font-display);font-weight:600;font-size:2.2rem}
+.footer-logo{display:block;width:186px;height:auto}
 .footer-brand-desc{color:var(--muted);font-size:0.85rem;max-width:38ch;margin-top:0.8rem;line-height:1.7}
 .footer-chips{margin-top:2rem;display:flex;gap:0.8rem;flex-wrap:wrap}
 .footer-chip{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid var(--border);border-radius:var(--r-pill)}
