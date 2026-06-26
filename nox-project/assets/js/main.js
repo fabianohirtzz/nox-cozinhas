@@ -339,6 +339,7 @@ renderProds('all');
    WhatsApp já com os dados preenchidos para não perder o lead.
 ============================================================ */
 const quoteForm=document.getElementById('quote-form');
+const QUOTE_T0=Date.now(); // marca quando o form carregou — vira o time-trap anti-spam
 const qs=document.getElementById('quote-submit');
 const formStatus=document.getElementById('form-status');
 const formFallback=document.getElementById('quote-fallback');
@@ -369,6 +370,7 @@ if(quoteForm&&qs){
     e.preventDefault();
     const fd=new FormData(quoteForm);
     if((fd.get('_gotcha')||'').toString().trim())return; // honeypot: robô
+    fd.set('_t',String(Date.now()-QUOTE_T0)); // tempo de preenchimento p/ o time-trap do servidor
     const attr=getAttribution(); // anexa origem/UTM/gclid para gravar no CRM
     Object.entries(attr).forEach(([k,v])=>{if(k!=='ts')fd.append(k,v);});
     const nome=(fd.get('nome')||'').toString().trim();

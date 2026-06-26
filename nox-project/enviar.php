@@ -57,10 +57,33 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     exit;
 }
 
-// honeypot: se o campo oculto vier preenchido, é robô — finge sucesso e ignora
-if (!empty($_POST['_gotcha'])) {
+/* Resposta a um envio identificado como spam: registra o motivo no log do
+   servidor e FINGE SUCESSO (HTTP 200 ok). Assim o bot não percebe o bloqueio
+   e não fica tentando variações. Os bloqueios ficam no error_log do cPanel. */
+function bloqueiaSpam($motivo) {
+    error_log('NOX form spam bloqueado: ' . $motivo
+        . ' | IP '    . ($_SERVER['REMOTE_ADDR'] ?? '?')
+        . ' | nome='  . substr((string) ($_POST['nome']  ?? ''), 0, 60)
+        . ' | email=' . substr((string) ($_POST['email'] ?? ''), 0, 80));
     echo json_encode(['ok' => true]);
     exit;
+}
+
+// honeypot: se o campo oculto vier preenchido, é robô — finge sucesso e ignora
+if (!empty($_POST['_gotcha'])) {
+    bloqueiaSpam('honeypot preenchido');
+}
+
+// time-trap + presença de JS: o formulário real só envia via fetch (JS), que
+// carimba em "_t" quantos milissegundos o visitante levou para preencher.
+// Bot que posta direto no enviar.php (sem rodar nosso JS) vem SEM o carimbo e
+// cai aqui; quem preenche rápido demais (< 3s) também é tratado como robô.
+$tempoPreenchimento = isset($_POST['_t']) ? (int) $_POST['_t'] : -1;
+if ($tempoPreenchimento < 0) {
+    bloqueiaSpam('sem carimbo de tempo (post direto / sem JS)');
+}
+if ($tempoPreenchimento < 3000) {
+    bloqueiaSpam('preenchido rápido demais (' . $tempoPreenchimento . 'ms)');
 }
 
 function campo($k) {
@@ -75,6 +98,13 @@ $setor     = campo('setor');
 $produto   = campo('produto');
 $cidade    = campo('cidade');
 $descricao = campo('descricao');
+
+// heurística de conteúdo: links e BBCode num pedido de orçamento B2B são sinal
+// forte de spam automatizado (divulgação, SEO, etc). Bloqueia sem alarde.
+$conteudo = "$nome $empresa $cidade $descricao";
+if (preg_match('~https?://|www\.\S|\[/?(?:url|link)|</?a\b~i', $conteudo)) {
+    bloqueiaSpam('link/BBCode no conteúdo');
+}
 
 // validação mínima no servidor
 if ($nome === '' || ($email === '' && $telefone === '')) {
